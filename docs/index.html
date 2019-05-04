@@ -4,6 +4,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta charset="UTF-8">
+  <title>Koooooo-7</title>
   <link rel="stylesheet" href="//unpkg.com/docsify/themes/vue.css">
 </head>
 <body>
@@ -14,12 +15,16 @@
      name:'Koooooo-7',
      //配置仓库地址github右上角仓库组件
      repo: 'https://github.com/Koooooo-7/HomePage',
+     // _404.md
+     // notFoundPage: true,
+
       //...
      coverpage: true, // 激活封面功能  _coverpage.md，可配置多个需要引入
      onlyCover: false, // 主页仅加载封面，不能滚动到其他页
      loadNavbar: true, // 定制导航栏   _navbar.md
      auto2top: true, // 路线更改时滚动到屏幕顶部
-     loadSidebar: true, // 定制侧边栏
+     loadSidebar: true, // 定制侧边栏   每一个模块_sideBar.md独立
+     // autoHeader: true // 自动为页面添加标题
      subMaxLevel: 3, // 定制的同时激活自动目录生成功能
      auto2top: true, // 切换页面后是否跳转到顶部
 
@@ -37,5 +42,12 @@
   <script src="//unpkg.com/docsify"></script>
   <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
   <script src="//unpkg.com/docsify/lib/plugins/search.js"></script>
+  <script src="//unpkg.com/docsify/lib/plugins/emoji.js"></script>
+  <!-- 图片缩放 -->
+  <script src="//unpkg.com/docsify/lib/plugins/zoom-image.js"></script> 
+  <!-- 语法高亮 -->
+  <script src="//unpkg.com/prismjs/components/prism-java.min.js"></script>
+  <script src="//unpkg.com/prismjs/components/prism-python.min.js"></script>
+  <script src="//unpkg.com/prismjs/components/prism-php.min.js"></script>
 </body>
 </html>
