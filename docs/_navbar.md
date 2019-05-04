@@ -1,0 +1,8 @@
+* :sunflower:[There is a Bug](/)
+  * [搭建配置 :house:](/build/index.md)
+  * [安装试玩 :wrench:](#配置配置​-wrench)
+  * [代码代码 :computer:](#代码代码-computer)
+  * [奇珍异宝 :white_flower:](#奇珍异宝-white_flower)
+  * [杂货小铺 :rainbow:](#杂货小铺rainbow)
+  * [咸鱼生活 :guitar:](#咸鱼生活-guitar)
+  * [About Me :speech_balloon:](README.md)
