@@ -1,10 +1,10 @@
 ![logo](_media/icon.svg)
 
-# HomePage <small>by docsify</small>
+# HomePage <small>powered by docsify</small>
 
 > Koy's  pretty  library.
 
-- Write something spacial
+- Write something special
 - Coding coding 
 - Hold on
 
