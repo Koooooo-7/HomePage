@@ -2,7 +2,7 @@
 
   - [Quick start :arrow_right:](/build/index.md)
 
-- 脑海 碎片 :wrench: 
+- 机器 碎片 :wrench: 
 
   - [Quick start :arrow_right:](/patch/index.md)
 
