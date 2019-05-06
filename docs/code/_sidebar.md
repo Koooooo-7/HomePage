@@ -8,6 +8,7 @@
 
   - [落网音乐所有专辑封面](code/python/落网音乐所有专辑封面.md)
   - [Gitlab备份策略](code/python/Gitlab等的备份策略.md)
+  - [图灵机器人钉钉回复](code/python/图灵机器人钉钉回复.md)
 
 - **PHP**
 

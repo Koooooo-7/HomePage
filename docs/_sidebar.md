@@ -1,8 +1,8 @@
-- 搭建 配置 :house:
+- <font color="#5F9EA0">搭建 配置</font> :house:
 
   - [Quick start :arrow_right:](/build/index.md)
 
-- 机器 碎片 :wrench: 
+- <font color="#808080">机器 碎片</font> :wrench: 
 
   - [Quick start :arrow_right:](/patch/index.md)
 
@@ -10,15 +10,15 @@
 
   - [Quick start :arrow_right:](/code/index.md)
 
-- 奇珍 异宝 :white_flower:
+- <font color="#6495ED">奇珍 异宝</font> :white_flower:
 
   - [Quick start :arrow_right:](/treasure/index.md)
 
-- 杂货 小铺 :rainbow:
+<!-- - <font color="#556B2F">杂货 小铺</font> :rainbow:
 
-  - [Quick start :arrow_right:](/life/index.md)
+  - [Quick start :arrow_right:](/life/index.md) -->
 
-- 咸鱼 生活 :guitar:
+- <font color="#FF7F50">咸鱼 生活</font> :guitar:
 
   - [Quick start :arrow_right:](/insane/index.md)
 
