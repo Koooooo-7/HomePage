@@ -1,6 +1,7 @@
 # **在Docker中搭建Pg主从**
 
-假装正式 :   编辑工具 **Typora**                         Docker中安装Pg的步骤在[这里](https://github.com/Koooooo-7/Koy-s-library/blob/master/Docker%E5%AE%89%E8%A3%85PostgreSql.md)。
+假装正式 :   编辑工具 **Typora**  
+Docker中安装Pg的步骤在[这里](/build/docs/Docker安装PostgreSql.md)。
 
 具体这次我们分四步走 ：
 

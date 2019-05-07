@@ -14,8 +14,8 @@
 - [ ] 可选操作
 
 ### 1. 安装官方的yum源   
-- [x] [选择你要安装的版本](https://yum.postgresql.org/) 我安装的是pg10
-- [x] [选择对应系统的yum源](https://yum.postgresql.org/repopackages.php#pg10)  右键复制选中的系统地址
+- [x]  [选择你要安装的版本](https://yum.postgresql.org/) 我安装的是pg10
+- [x]  [选择对应系统的yum源](https://yum.postgresql.org/repopackages.php#pg10)  右键复制选中的系统地址
   安装源  
   `yum install https://download.postgresql.org/pub/repos/yum/11/redhat/rhel-7-x86_64/pgdg-redhat-repo-latest.noarch.rpm -y  `
 
@@ -24,18 +24,18 @@
 
 ### 2. 安装需要的包
 
-- [x] 我们需要安装的是这两个： postgresql10-contrib 、postgresql10-server  
+- [x]  我们需要安装的是这两个： postgresql10-contrib 、postgresql10-server  
    `yum install postgresql10-contrib postgresql10-server -y` 
 
-- [ ] 修改默认的数据目录存放当地  
+- [ ]  修改默认的数据目录存放当地  
 -    默认
     Postgresql安装目录是  /usr/pgsql-10    
     Postgresql的数据目录是/var/lib/pgsql/10/data目录  
     具体修改步骤，请自己解决。:dog:
 
-- [x] 初始化默认数据库 `/usr/pgsql-10/bin/postgresql-10-setup initdb`
+- [x]  初始化默认数据库 `/usr/pgsql-10/bin/postgresql-10-setup initdb`
     
-- [x] 设置启动与开机启动  
+- [x]  设置启动与开机启动  
 - `sudo systemctl start postgresql-10`
 - `sudo systemctl enable postgresql-10.service`
 ### 3. 登录postgresql并设置密码
@@ -51,7 +51,7 @@
 
 
 ### 4. 设置远程登录
-- [x] 修改访问认证配置文件`vim /var/lib/pgsql/10/data/pg_hba.conf` 
+- [x]  修改访问认证配置文件`vim /var/lib/pgsql/10/data/pg_hba.conf` 
 - 改成我放在这里的这样即可。
 ```
   # TYPE  DATABASE        USER            ADDRESS                 METHOD
@@ -70,7 +70,7 @@
   host    all             all             0.0.0.0/0               md5     就加上这一行就好了！
   ```
 
-- [x] 修改pg自己的配置文件`vim /var/lib/pgsql/10/data/postgresql.conf` 
+- [x]  修改pg自己的配置文件`vim /var/lib/pgsql/10/data/postgresql.conf` 
 - 改成我放在这里的这样即可。
 ```
   #------------------------------------------------------------------------------
@@ -98,7 +98,7 @@
 
   注意后面的  # (change requires restart)表示改完是要重启重新加载配置的。
 ```
-- [x] 重启服务 `systemctl restart  postgresql-10.service` 
+- [x]  重启服务 `systemctl restart  postgresql-10.service` 
 **远程连接问题解决！**  
 
 ------
