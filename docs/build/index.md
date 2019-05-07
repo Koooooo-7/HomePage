@@ -31,6 +31,7 @@
 ##### [安装PostgreSql(Docker中)](build/docs/Docker安装PostgreSql.md)
 ##### [安装PostgreSql(CentOS中)](build/docs/安装PostgresSql10.7.md)
 ##### [搭建PostgresSql主从(Docker中)](build/docs/在Docker中搭建Pg主从.md)
+##### [PostgreSql 主从搭建同(异)步流复制](/build/docs/PostgreSql主从搭建同（异）步流复制.md)
 
 ## W
 
