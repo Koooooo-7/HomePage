@@ -4,5 +4,5 @@
   * [代码代码 :computer:](/code/index.md)
   * [奇珍异宝 :white_flower:](/treasure/index.md)
   <!-- * [杂货小铺 :rainbow:](/life/index.md) -->
-  * [咸鱼生活 :guitar:](/insane/index.md)
-  * [About Me :speech_balloon:](/README.md)
+  * [:pushpin: 咸鱼生活](/insane/index.md)
+  * [About Me :speech_balloon:](README.md)
