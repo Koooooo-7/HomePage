@@ -6,7 +6,6 @@
 
 ------
 
-问题链接在[这里](https://www.v2ex.com/t/558972#reply21)。
 
 问题如下:
 
@@ -112,6 +111,41 @@ array (size=1)
 1.在楼上get到了一个[在线演示代码](https://www.dooccn.com//php7/#id/46ae6d604aee73cdd0e1c3ffce4497cf)的网站，赚了阿。
 
 2.一个大佬用索引写的代码，感觉很厉害,可是没有了，他是用github的一个Gist服务，和gitlab的Snippets挺像的。
+
+补充：大佬的代码找到了！
+```php
+<?php
+    $a = [ 'Date','Media','Geo' ];
+    $b = [ 'Num' ];
+    $subject = [ 'Date'=>'2019-04-26','Media'=>'AAA','Geo'=>'CN','Num'=>105 ];
+  
+    // 多维数组的最后一项
+    $value = array_intersect_key($subject, array_fill_keys($b, 1));
+    // 生成多维数组
+    $res = createMultiArray($a, $value, $subject);
+    var_dump([
+        'res' => $res
+    ]);
+  
+    /**
+     * createMultiArray 根据数据创建多维数组
+     * @param array $multiKeys 根据提供的 $multiKeys，查找 source，取值为 key 创建多维数组
+     * @param mixed $value 最后一个数组的值
+     * @param array $source 数据源
+     * @return array 创建的多维数组
+     */
+    function createMultiArray($multiKeys, $value, $source) {
+        $structure = [];
+        $pointer = &$structure;
+        foreach($multiKeys as $multiKey) {
+            $key = $source[$multiKey];
+            // 这里引用了下一级数组
+            $pointer = &$pointer[$key];
+        }
+        $pointer = $value;
+        return $structure;
+    }
+```
 
 
 总结：  
