@@ -6,6 +6,7 @@
   <meta charset="UTF-8">
   <title>Koooooo-7</title>
   <link rel="stylesheet" href="//unpkg.com/docsify/themes/vue.css">
+  <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
   <div id="app">Loading...</div>
@@ -27,6 +28,8 @@
      // autoHeader: true // 自动为页面添加标题
      subMaxLevel: 3, // 定制的同时激活自动目录生成功能
      auto2top: true, // 切换页面后是否跳转到顶部
+     // formatUpdated: '{YYYY}-{MM}-{DD}', //文档更新时间
+
 
      //搜索功能需要引入
      search: {
@@ -34,6 +37,42 @@
           noData: ''
         },
       
+      //自定义插件
+      plugins: [
+      //底部footer 文字内容来自 [one 一个] api
+      function (hook) {
+
+          var word = "";
+          var footer = "";
+
+          $.ajax({
+              type: "POST",
+              url: 'https://api.hibai.cn/api/index/index',
+              dataType: 'json',
+              //采用同步请求为了在页面返回前拿到内容拼接footer
+              async:false,
+              data: {"TransCode":"030111","OpenId":"123456789","Body":""},
+              success: function(result){
+              label = '「ONE · 一个」 / '+ result.Body.date.substring(0,10);
+              word = result.Body.word+'   ——'+label;
+              footer = [
+                '<hr/>',
+                '<footer>',
+                '<p><font size="1" color="grey">',
+                word,
+                '</font></p>',
+                '<span><a href="https://github.com/Koooooo-7">Koooooo-7</a> &copy;2019 -  </span>',
+                '<span>Proudly published with <a href="https://github.com/docsifyjs/docsify" target="_blank">docsify</a>.</span>',
+                '</footer>'
+                   ].join('')
+              }
+
+      });
+      hook.afterEach(function (html) {
+        return html + footer
+      })
+    }
+    ]
 
 
     }
@@ -43,6 +82,8 @@
   <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
   <script src="//unpkg.com/docsify/lib/plugins/search.js"></script>
   <script src="//unpkg.com/docsify/lib/plugins/emoji.js"></script>
+  <!-- 引入外部JS -->
+  <script src="//unpkg.com/docsify/lib/plugins/external-script.js"></script>
   <!-- 图片缩放 -->
   <script src="//unpkg.com/docsify/lib/plugins/zoom-image.js"></script> 
   <!-- 语法高亮 -->
