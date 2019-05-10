@@ -6,7 +6,6 @@
   <meta charset="UTF-8">
   <title>Koooooo-7</title>
   <link rel="stylesheet" href="//unpkg.com/docsify/themes/vue.css">
-  <!-- jq -->
   <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
@@ -34,45 +33,49 @@
 
      //搜索功能需要引入
      search: {
-          placeholder: 'Search Search',
-          noData: 'FIND NOTHING '
+          placeholder: 'Search',
+          noData: ''
         },
       
       //自定义插件
       plugins: [
-     
+      //底部footer 文字内容来自 [one 一个] api
       function (hook) {
-      var footer = [
-          '<hr/>',
-          '<footer>',
-          '<p><font size="1" color="grey" id="footer-word">',
-          '</font></p>',
-          '<span><a href="https://github.com/Koooooo-7">Koooooo-7</a> &copy;2019 -  </span>',
-          '<span>Proudly published with <a href="https://github.com/docsifyjs/docsify" target="_blank">docsify</a>.</span>',
-          '</footer>'
-         ].join('')
 
+          var word = "";
+          var footer = "";
+
+          $.ajax({
+              type: "POST",
+              url: 'https://api.hibai.cn/api/index/index',
+              dataType: 'json',
+              //采用同步请求为了在页面返回前拿到内容拼接footer
+              async:false,
+              data: {"TransCode":"030111","OpenId":"123456789","Body":""},
+              success: function(result){
+              label = '「ONE · 一个」 / '+ result.Body.date.substring(0,10);
+              word = result.Body.word+'   ——'+label;
+              footer = [
+                '<hr/>',
+                '<footer>',
+                '<p><font size="1" color="grey">',
+                word,
+                '</font></p>',
+                '<span><a href="https://github.com/Koooooo-7">Koooooo-7</a> &copy;2019 -  </span>',
+                '<span>Proudly published with <a href="https://github.com/docsifyjs/docsify" target="_blank">docsify</a>.</span>',
+                '</footer>'
+                   ].join('')
+              }
+
+      });
       hook.afterEach(function (html) {
         return html + footer
       })
+    }
+    ]
 
-      //底部footer 文字内容来自 [one 一个] api
-      hook.doneEach(function() {
-      // 每次路由切换时数据全部加载完成后调用，没有参数。
-        $.ajax({
-          type: "POST",
-          url: 'https://api.hibai.cn/api/index/index',
-          dataType: 'json',
-          data: {"TransCode":"030111","OpenId":"123456789","Body":""},
-          success: function(result){
-            label = '「ONE · 一个」 / '+ result.Body.date.substring(0,10);
-            word = result.Body.word+'   ——'+label;
-            $('#footer-word')[0].innerHTML = word;
-           }
-         });
-      })
-   }]
-  }
+
+    }
   </script>
   <script src="//unpkg.com/docsify"></script>
   <script src="//unpkg.com/docsify"></script>
@@ -87,6 +90,5 @@
   <script src="//unpkg.com/prismjs/components/prism-java.js"></script>
   <script src="//unpkg.com/prismjs/components/prism-python.js"></script>
   <script src="//unpkg.com/prismjs/components/prism-php.js"></script>
-
 </body>
 </html>
