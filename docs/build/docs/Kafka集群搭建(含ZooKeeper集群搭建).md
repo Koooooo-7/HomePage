@@ -268,6 +268,10 @@ so easy :white_flower:。
 
 `bin/kafka-console-consumer.sh --bootstrap-server 192.168.0.88:9092 --topic test-topic --from-beginning`
 
+**对消费者编组group**
+也可以创建一个消费者，并且指明它的group  `--group groupname`    
+`bin/kafka-console-consumer.sh --bootstrap-server 192.168.0.88:9092 --topic test-topic --from-beginning -- group groupname`
+
 多发送几条消息退出进入尝试都可以，最终效果如下：
 
 ![](_media\K-kafka-cluster06.jpg)
