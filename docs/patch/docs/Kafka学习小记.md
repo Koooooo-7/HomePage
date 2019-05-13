@@ -123,7 +123,7 @@ kafka单从基本使用上来说，结合业务场景应该都能搞定:dog:。
 
 
 
-**组成员GG**
+**组成员GG时**
 
 ![](_media\20190513-08.png)
 
@@ -135,9 +135,11 @@ kafka单从基本使用上来说，结合业务场景应该都能搞定:dog:。
 
 ## 参考
 
-[官方文档-INTRODUCTION](<http://kafka.apache.org/intro>)
+[为什么要用消息队列](https://github.com/doocs/advanced-java/blob/master/docs/high-concurrency/why-mq.md)
 
-[Consumer Group详解](<http://www.cnblogs.com/huxi2b/p/6223228.html>)
+[官方文档-INTRODUCTION](http://kafka.apache.org/intro)
+
+[Consumer Group详解](http://www.cnblogs.com/huxi2b/p/6223228.html)
 
 [kafka消息模型-系列小视频](https://www.bilibili.com/video/av32925832?t=511)
 
