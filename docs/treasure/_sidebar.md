@@ -11,7 +11,7 @@
 
 - **好记星**
 
-  - [常用git命令](treasure/doc/常用git命令.md)
+  - [常用git命令](treasure/docs/常用git命令.md)
 
 - **Others**
   - [Metabase(数据可视化)](treasure/doc/在Docker中玩一下Metabase.md)
