@@ -5,7 +5,8 @@
 
   - [Kafka学习小记](patch/docs/Kafka学习小记.md)
 
-  
+  - [Zookeeper学习小记](patch/docs/Zookeeper学习小记.md)
+
 
 - [About Me](README.md)
 
