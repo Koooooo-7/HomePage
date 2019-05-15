@@ -7,6 +7,7 @@
 
 ##### [Quick Start docsify](patch/docs/Quick-Start-docsify.md)
 ##### [Kafka学习小记](patch/docs/Kafka学习小记.md)
+##### [Zookeeper学习小记](patch/docs/Zookeeper学习小记.md)
 
 
 
