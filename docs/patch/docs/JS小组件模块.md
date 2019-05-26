@@ -123,7 +123,7 @@ $('#proPercent')[0].style.width = parseInt(progress) + "%";
 
 请求一个接口，接口返回二进制对象。
 
-<a href="file_path" download="file_name"></a>
+`<a href="file_path" download="file_name"></a>`
 
 ```js
 eg:
