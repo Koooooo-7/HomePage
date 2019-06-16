@@ -41,39 +41,47 @@
       plugins: [
       //底部footer 文字内容来自 [one 一个] api
       function (hook) {
-
-          var word = "";
-          var footer = "";
-
-          $.ajax({
+        new Promise(function(resolve,reject){
+              $.ajax({
               type: "POST",
               url: 'https://api.hibai.cn/api/index/index',
               dataType: 'json',
-              //采用同步请求为了在页面返回前拿到内容拼接footer
-              async:false,
               data: {"TransCode":"030111","OpenId":"123456789","Body":""},
               success: function(result){
               label = '「ONE · 一个」 / '+ result.Body.date.substring(0,10);
               word = result.Body.word+'   ——'+label;
-              footer = [
-                '<hr/>',
-                '<footer>',
-                '<p><font size="1" color="grey">',
-                word,
-                '</font></p>',
-                '<span><a href="https://github.com/Koooooo-7">Koooooo-7</a> &copy;2019 -  </span>',
-                '<span>Proudly published with <a href="https://github.com/docsifyjs/docsify" target="_blank">docsify</a>.</span>',
-                '</footer>'
-                   ].join('')
+              resolve(word)
+              },
+              error:function(result){
+                reject("")
               }
-
-      });
-      hook.afterEach(function (html) {
-        return html + footer
+           });
+           
+       }).then(function(data){
+        return data
+    },function(data){
+        return data
+    }).then(function(word){
+            footer = [
+                    '<hr/>',
+                    '<footer>',
+                    '<p><font size="1" color="grey">',
+                    word,
+                    '</font></p>',
+                    '<span><a href="https://github.com/Koooooo-7">Koooooo-7</a> &copy;2019 -  </span>',
+                    '<span>Proudly published with <a href="https://github.com/docsifyjs/docsify" target="_blank">docsify</a>.</span>',
+                    '</footer>'
+                       ].join('')
+            return footer;
+    }).then(function(footer){
+        hook.afterEach(function (html) {
+          return html + footer
+        })
       })
     }
+ // hook end
     ]
-
+// plugins  end
 
     }
   </script>
