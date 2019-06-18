@@ -9,6 +9,8 @@
 
   - [JS小组件模块](/patch/docs/JS小组件模块.md)
 
+  - [SpringBoot配置Durid连接池](/patch/docs/SpringBoot配置Durid连接池.md)
+
 
 - [About Me](README.md)
 
