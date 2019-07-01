@@ -12,7 +12,7 @@
 
 ## 工具箱
 
-##### [没有工具占个坑](code/python/落网音乐所有专辑封面.md)
+##### [SSHPASS远程免交互SSH](treasure/docs/SSHPASS.md)
 
 ## 好记星
 
