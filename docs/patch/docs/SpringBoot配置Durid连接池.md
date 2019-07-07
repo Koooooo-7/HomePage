@@ -30,18 +30,33 @@
 
 ```yml
 spring:
-  datasource:
-    driver-class-name: org.postgresql.Driver
-    username: username
-    url: jdbc:postgresql://localhost:5432/rms?Unicode=true&characterEncoding=UTF-8&useSSL=false
-    password: password
-    type: com.alibaba.druid.pool.DruidDataSource
+  type: com.alibaba.druid.pool.DruidDataSource
     druid:
-      initial-size: 5 #连接池初始化大小
-      min-idle: 10 #最小空闲连接数
-      max-active: 20 #最大连接数
-  
-      # 日志
+      #监控统计拦截的filters
+      #          filters: stat
+      web-stat-filter.enabled: true
+      driver-class-name: org.postgresql.Driver
+      url: jdbc:postgresql://localhost:5432/rms?Unicode=true&characterEncoding=UTF-8&useSSL=false
+      #基本属性
+      username: postgres
+      password: password
+      #配置初始化大小/最小/最大
+      initial-size: 1
+      min-idle: 1
+      max-active: 20
+      #获取连接等待超时时间
+      max-wait: 60000
+      #间隔多久进行一次检测，检测需要关闭的空闲连接
+      time-between-eviction-runs-millis: 60000
+      #一个连接在池中最小生存的时间
+      min-evictable-idle-time-millis: 300000
+      validation-query: SELECT 'x'
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      #打开PSCache，并指定每个连接上PSCache的大小。oracle设为true，mysql设为false。分库分表较多推荐设置为false
+      pool-prepared-statements: false
+      max-pool-prepared-statement-per-connection-size: 20
       filter:
         slf4j:
           enabled: true
@@ -49,6 +64,7 @@ spring:
           statement-close-after-log-enabled: false
           result-set-open-after-log-enabled: false
           result-set-close-after-log-enabled: false
+      async-init: true
 
 ```
 
