@@ -13,6 +13,10 @@
 
   - [PageHelper对分页数据的再处理](/patch/docs/PageHelper对分页数据的再处理.md)
 
+  - [Elasticsearch入门](/patch/docs/Elasticsearch入门.md)
+
+  - [服务器常用小指令](/patch/docs/服务器常用小指令.md)
+
 - [About Me](README.md)
 
 
