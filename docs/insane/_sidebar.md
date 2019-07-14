@@ -9,6 +9,7 @@
       - [Vue 学习小记02](/insane/2019/Vue学习小记02.md)
       - [Vue 学习小记03](/insane/2019/Vue学习小记03.md)
       - [Vue 学习小记04](/insane/2019/Vue学习小记04.md)
+      - [部署Vue项目](/insane/2019/部署Vue项目.md)
 
 
   
