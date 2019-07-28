@@ -9,6 +9,8 @@
 
   - [JS小组件模块](/patch/docs/JS小组件模块.md)
 
+  - [Promise](/patch/docs/Promise.md)
+
   - [SpringBoot配置Durid连接池](/patch/docs/SpringBoot配置Durid连接池.md)
 
   - [PageHelper对分页数据的再处理](/patch/docs/PageHelper对分页数据的再处理.md)
