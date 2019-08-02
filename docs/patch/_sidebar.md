@@ -19,6 +19,8 @@
 
   - [服务器常用小指令](/patch/docs/服务器常用小指令.md)
 
+  - [Springboot整合LDAP](/patch/docs/Springboot整合LDAP.md)
+
 - [About Me](README.md)
 
 
