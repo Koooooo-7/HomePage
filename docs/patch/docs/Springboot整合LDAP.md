@@ -93,31 +93,21 @@ public interface PersonRepository extends CrudRepository<Person, Name> {
 ```java
 public class Person {
 
+    private String account;
     private String fullName;
-    private String lastName;
     private String description;
     private String mail;
-    private String account;
     private String telephoneNumber;
 
     @Override
     public String toString() {
         return "Person{" +
-                "fullName='" + fullName + '\'' +
-                ", lastName='" + lastName + '\'' +
+                "account='" + account + '\'' +
+                ", fullName='" + fullName + '\'' +
                 ", description='" + description + '\'' +
                 ", mail='" + mail + '\'' +
-                ", account='" + account + '\'' +
                 ", telephoneNumber='" + telephoneNumber + '\'' +
                 '}';
-    }
-
-    public String getTelephoneNumber() {
-        return telephoneNumber;
-    }
-
-    public void setTelephoneNumber(String telephoneNumber) {
-        this.telephoneNumber = telephoneNumber;
     }
 
     public String getAccount() {
@@ -128,7 +118,20 @@ public class Person {
         this.account = account;
     }
 
-    public Person() {
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getMail() {
@@ -139,28 +142,12 @@ public class Person {
         this.mail = mail;
     }
 
-    public String getFullName() {
-        return fullName;
+    public String getTelephoneNumber() {
+        return telephoneNumber;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
+    public void setTelephoneNumber(String telephoneNumber) {
+        this.telephoneNumber = telephoneNumber;
     }
 }
 ```
@@ -170,26 +157,45 @@ public class Person {
 通过实现AttributesMapper接口来定义映射关系。
 
 ```java
-public class PersonAttributesMapper implements AttributesMapper {
+public class PersonAttributesMapper implements AttributesMapper<Person> {
+
+    private static final Logger logger = LogUtils.getLogger();
+
     @Override
-    public Object mapFromAttributes(Attributes attrs) throws NamingException {
-            Person person = new Person();
-            // 获取LDAP用户信息并且映射到对象上
-            // 因为 attr的get内容是否存在不确定，会导致NEP，所以需要用try catch
+    public AuthPersonPO mapFromAttributes(Attributes attrs) {
+        Person person = new Person();
+        //  获取LDAP用户信息并且映射到对象上
+        //  因为 attr的get内容是否存在不确定，直接转换成String会导致NPE
         try {
-            person.setFullName((String) attrs.get("cn").get());
-            person.setLastName((String) attrs.get("sn").get());
-            // 描述
-            person.setDescription((String) attrs.get("description").get());
-            person.setMail((String) attrs.get("mail").get());
             // 用户登录账号
-            person.setAccount((String) attrs.get("sAMAccountName").get());
-             //用户手机号
-            person.setTelephoneNumber((String) attrs.get("telephoneNumber").get());
-        }catch (Exception e){
-            log.error("user get info error {}", e)
-        };
-            return person;
+            Object userAccount = attrs.get("sAMAccountName").get();
+            if (userAccount != null) {
+                person.setAccount((String) userAccount);
+            }
+            // 完整姓名
+            Object fullName = attrs.get("displayName").get();
+            if (fullName != null) {
+                person.setFullName((String) fullName);
+            }
+            // 描述
+            Object description = attrs.get("description").get();
+            if (description != null) {
+                person.setDescription((String) description);
+            }
+            // 用户邮箱
+            Object mail = attrs.get("mail").get();
+            if (mail != null) {
+                person.setMail((String) mail);
+            }
+            //用户手机号
+            Object telephoneNumber = attrs.get("telephoneNumber").get();
+            if (telephoneNumber != null)
+                person.setTelephoneNumber((String) telephoneNumber);
+        } catch (Exception e) {
+            logger.info("personAttributesMapper mapping exception");
+        }
+        ;
+        return person;
     }
 }
 ```
@@ -230,6 +236,116 @@ public class LdapApplicationTests {
 ```
 
 -----
+
+##  用户信息量过大的问题
+
+在测试中发现每次最大只能获取到1000个用户，[微软官方](https://support.microsoft.com/zh-cn/help/315071/how-to-view-and-set-ldap-policy-in-active-directory-by-using-ntdsutil)表示有默认的限制就是一次查询最多只能1000个。
+
+这里显然有两个解决办法。
+
+- 在AD域的层面修改默认的限制数量。
+- 代码业务层面去解决这个问题。
+
+显然，能在业务层解决的问题，就不要去动一些很重要的基础配置设施。
+
+参考[Spring文档分页](https://support.microsoft.com/zh-cn/help/315071/how-to-view-and-set-ldap-policy-in-active-directory-by-using-ntdsutil)查询的设置方法。
+
+即设置分页数量`DEFAULT_PAGE_SIZE`之后每次获取，直到获取的数目小于分页数量时（最后一页）。
+
+> tips: 如果此时还继续获取，会重新获取到第一页的内容。
+
+### 实现一
+
+```java
+    // 默认分页数量
+    private int DEFAULT_PAGE_SIZE = 1000;
+    /**
+     * 根据query 筛选出全部的用户
+     * @param base 根节点位置  为空使用配置文件配置的base
+     * @param filter 过滤条件
+     * @param mapper 映射关系
+     * @param <T>
+     * @return
+     */
+    public<T> List<T> findAll(String base,String filter,AttributesMapper<T> mapper){
+            // 当前查询页的内容数量
+            int current_search_size;
+            // 分页信息查询递进到下一页  当获取到最后一页后继续获取会继续获取第一页
+            PagedResultsDirContextProcessor processor=
+            new PagedResultsDirContextProcessor(DEFAULT_PAGE_SIZE);
+
+            // 设置搜索对象在子树范围
+            final SearchControls searchControls=new SearchControls();
+            searchControls.setSearchScope(SearchControls.SUBTREE_SCOPE);
+        
+            List<T> authPersonPOList=new ArrayList<>();
+            // 获取用户内容
+            do{
+            List<T> authPersonPOList0=ldapTemplate.search(base,
+            filter,searchControls,mapper,processor);
+            authPersonPOList.addAll(authPersonPOList0);
+
+            current_search_size=authPersonPOList0.size();
+            }while(current_search_size==DEFAULT_PAGE_SIZE);
+            return authPersonPOList;
+    };
+```
+
+
+
+### 实现二
+
+实现二是对实现一的重构，进一步对外封装以及递归获取数据。
+
+```java
+// 默认分页数量
+private int DEFAULT_PAGE_SIZE = 1000;
+
+public <T> List<T> findAll(String base,String filter, AttributesMapper<T> mapper) {
+        List<T> authPersonPOList = new ArrayList<>();
+        return new findMore<T>(base, filter, mapper).searchMore(authPersonPOList, DEFAULT_PAGE_SIZE);
+    };
+
+    private class findMore<T>{
+        // 分页信息查询递进到下一页
+        PagedResultsDirContextProcessor processor =
+                new PagedResultsDirContextProcessor(DEFAULT_PAGE_SIZE);
+        // 设置搜索对象在子树范围
+        final SearchControls searchControls = new SearchControls();
+        private String base;
+        private String filter;
+        private AttributesMapper<T> mapper;
+
+        findMore(String base,String filter, AttributesMapper<T> mapper){
+          this.base = base;
+          this.filter  = filter;
+          this.mapper = mapper;
+        }
+
+        List<T> searchMore(List<T> list, int current_search_size){
+            searchControls.setSearchScope(SearchControls.SUBTREE_SCOPE);
+            ldapTemplate.setIgnorePartialResultException(true);
+            final SearchControls searchControls = new SearchControls();
+            searchControls.setSearchScope(SearchControls.SUBTREE_SCOPE);
+            if (current_search_size != DEFAULT_PAGE_SIZE) return list;
+            List<T> authPersonPOList0 = ldapTemplate.search(base,
+                    filter, searchControls,mapper, processor);
+            list.addAll(authPersonPOList0);
+            return searchMore(list,authPersonPOList0.size());
+
+        }
+    }
+```
+
+
+
+### 调用示例
+
+```java
+// 获取所有用户信息
+List<AuthPersonPO> authPersonPOList = ldapOperation.findAll("","(&(objectCategory=Person)(objectClass=Person)(sAMAccountName=*))", new PersonAttributesMapper());
+logger.info("scheduled get data from ldap:{}", authPersonPOList);
+```
 
 
 
