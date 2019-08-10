@@ -4,9 +4,9 @@
 
 > Koy's  pretty  library.
 
-- Write something special
-- Coding coding 
-- Hold on
+- Write Something Special
+- Coding Coding 
+- Hold On
 - One
 
 <!-- [GitHub](https://github.com/docsifyjs/docsify/)
