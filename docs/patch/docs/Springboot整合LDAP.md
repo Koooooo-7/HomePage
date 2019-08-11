@@ -41,6 +41,9 @@ spring:
 @Entry(objectClasses = { "person"})
 public class Person {
 
+    @Id
+    private Name id;
+    
     @Attribute(name = "cn")
     private String fullName;
 
