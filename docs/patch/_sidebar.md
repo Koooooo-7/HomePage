@@ -21,6 +21,8 @@
 
   - [Springboot整合LDAP](/patch/docs/Springboot整合LDAP.md)
 
+  - [自定义Springboot的Starter](/patch/docs/自定义Springboot的Starter.md)
+
 - [About Me](README.md)
 
 
