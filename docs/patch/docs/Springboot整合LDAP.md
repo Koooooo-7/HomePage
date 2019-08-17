@@ -26,7 +26,41 @@ spring:
 产生一个`LdapTemplate`自动注入（和redisTemplate和kafkaTemplate是不是有点像:dog:）。
 
 -----
+## 自定义LDAP接入
 
+参考[官方文档](https://docs.spring.io/spring-ldap/docs/2.3.1.RELEASE/reference/#configuration)的`xml`配置，相应转换一下就好了。
+
+但是这里有一个坑的地方，会在创建`AbstractContextSource.getReadOnlyContext`时抛出NEP。
+
+因为这里需要在配置完毕后调用`afterPropertiesSet()`方法，他的注释是这么描述的。
+
+>/**
+> * Checks that all necessary data is set and that there is no compatibility
+> * issues, after which the instance is initialized. Note that you need to
+> * call this method explicitly after setting all desired properties if using
+> * the class outside of a Spring Context.
+> */
+
+示例代码，简要地配置。
+
+```java
+@Configuration
+public class LdapConfigure {
+    @Bean
+    public LdapTemplate ldapTemplate(){
+        LdapContextSource ldapContextSource = new LdapContextSource();
+        ldapContextSource.setBase("DC=koooooo,DC=com");
+        ldapContextSource.setUrl("ldap://192.168.23.24:389");
+        ldapContextSource.setUserDn("CN=root,OU=IT,DC=koooooo,DC=com");
+        ldapContextSource.setPassword("123456");
+        // 只有调用过这个方法，才能使上面的配置生效
+        ldapContextSource.afterPropertiesSet();
+        LdapTemplate ldapTemplate = new LdapTemplate();
+        ldapTemplate.setContextSource(ldapContextSource);
+        return ldapTemplate;
+    }
+}
+```
 
 
 ## 获取LDAP用户信息
