@@ -23,6 +23,8 @@
 
   - [自定义Springboot的Starter](/patch/docs/自定义Springboot的Starter.md)
 
+  - [Volatile](/patch/docs/Volatile.md)
+
 - [About Me](README.md)
 
 

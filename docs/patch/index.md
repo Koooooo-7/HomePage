@@ -16,6 +16,7 @@
 ##### [服务器常用小指令](/patch/docs/服务器常用小指令.md)
 ##### [Springboot整合LDAP](/patch/docs/Springboot整合LDAP.md)
 ##### [自定义Springboot的Starter](/patch/docs/自定义Springboot的Starter.md)
+##### [Volatile](/patch/docs/Volatile.md)
 
 
 
