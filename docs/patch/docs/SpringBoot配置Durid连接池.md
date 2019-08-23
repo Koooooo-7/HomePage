@@ -1,6 +1,6 @@
 # SpringBoot配置Durid连接池
 
-网上找了很多参考，五花八门，我也不知道怎么就成功了。:dog:
+网上找了很多参考，五花八门也是。:dog:
 
 ## 引入pom依赖
 
@@ -23,6 +23,14 @@
     <artifactId>druid-spring-boot-starter</artifactId>
     <version>1.1.10</version>
 </dependency>
+<!--引入数据库连接池如果有
+   java.lang.ClassNotFoundException: org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType
+的异常，需要引入JDBC依赖-->
+<!--<dependency>-->
+            <!--<groupId>org.springframework.boot</groupId>-->
+            <!--<artifactId>spring-boot-starter-jdbc</artifactId>-->
+<!--</dependency>-->
+
         
 ```
 
