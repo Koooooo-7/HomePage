@@ -18,6 +18,7 @@
 ##### [自定义Springboot的Starter](/patch/docs/自定义Springboot的Starter.md)
 ##### [Volatile](/patch/docs/Volatile.md)
 ##### [线程池ThreadPoolExcutor](/patch/docs/线程池ThreadPoolExcutor.md)
+##### [微服务间服务接口调用](/patch/docs/微服务间服务接口调用.md)
 
 
 
