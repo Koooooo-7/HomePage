@@ -31,6 +31,8 @@
 
   - [JVM小梳理](/patch/docs/JVM小梳理.md)
 
+  - [CompletableFuture异步编程](/patch/docs/CompletableFuture异步编程.md)
+
 - [About Me](README.md)
 
 
