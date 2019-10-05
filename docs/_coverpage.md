@@ -1,6 +1,6 @@
 ![logo](_media/icon.svg)
 
-# HomePage <small>powered by docsify</small>
+# HomePage <small>2019</small>
 
 > Koy's  pretty  library.
 
