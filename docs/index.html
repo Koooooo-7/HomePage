@@ -39,26 +39,28 @@
       
       //自定义插件
       plugins: [
-      //底部footer 文字内容来自 [one 一个] api
+      //底部footer 文字内容来自 [一言 hitokoto] api
       function (hook) {
-             $.ajax({type: "POST",
-              url: 'https://api.hibai.cn/api/index/index',
+        let date = new Date()
+        let year = date.getFullYear();
+        let month = date.getMonth()+1;
+        let day = date.getDate();
+
+        const prefix = '<hr/><footer><p><font size="1" color="grey"><span id="mt-word">';
+        const suffix = '<span/></font></p><span><a href="https://www.ko8e24.top">Koooooo-7</a> &copy;2019 -  </span><span>Proudly published with <a href="https://github.com/docsifyjs/docsify" target="_blank">docsify</a>.</span></footer>'
+             $.ajax({type: "GET",
+              url: 'https://international.v1.hitokoto.cn/?c=a',
               dataType: 'json',
-              data: {"TransCode":"030111","OpenId":"123456789","Body":""},
              }).then(function(result){
-              label = '「ONE · 一个」 / '+ result.Body.date.substring(0,10);
-              word = result.Body.word+'   ——'+label;
+              label = '「'+result.from+'」 / '+ year+"/"+month+"/"+day;
+              word = result.hitokoto+'   ——'+label;
               return word;  
             }).then(function(word){
                       footer = [
-                          '<hr/>',
-                          '<footer>',
-                          '<p><font size="1" color="grey">',
+                          prefix,
                           word,
-                          '</font></p>',
-                          '<span><a href="https://www.ko8e24.top">Koooooo-7</a> &copy;2019 -  </span>',
-                          '<span>Proudly published with <a href="https://github.com/docsifyjs/docsify" target="_blank">docsify</a>.</span>',
-                          '</footer>'
+                          suffix
+                          
                        ].join('');
               hook.afterEach(function (html) {
               return html + footer
