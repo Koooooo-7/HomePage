@@ -2,7 +2,7 @@
 
 ##  打包
 
-`npn run build`
+`npm run build`
 
 然后会有`dist文件`。
 
