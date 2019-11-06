@@ -13,6 +13,8 @@
 
   - [SpringBoot配置Durid连接池](/patch/docs/SpringBoot配置Durid连接池.md)
 
+  - [MyBatis-Plus整合PageHelper](/patch/docs/MyBatis-Plus整合PageHelper.md)
+
   - [PageHelper对分页数据的再处理](/patch/docs/PageHelper对分页数据的再处理.md)
 
   - [Elasticsearch入门](/patch/docs/Elasticsearch入门.md)
