@@ -11,6 +11,7 @@
 ##### [JS小组件模块](/patch/docs/JS小组件模块.md)
 ##### [Promise](/patch/docs/Promise.md)
 ##### [SpringBoot配置Durid连接池](/patch/docs/SpringBoot配置Durid连接池.md)
+##### [MyBatis-Plus整合PageHelper](/patch/docs/MyBatis-Plus整合PageHelper.md) 
 ##### [PageHelper对分页数据的再处理](/patch/docs/PageHelper对分页数据的再处理.md)
 ##### [Elasticsearch入门](/patch/docs/Elasticsearch入门.md)
 ##### [服务器常用小指令](/patch/docs/服务器常用小指令.md)
