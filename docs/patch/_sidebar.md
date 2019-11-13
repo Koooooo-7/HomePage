@@ -39,6 +39,8 @@
 
   - [Lock和Condition](/patch/docs/Lock和Condition.md)
 
+  - [Spring源码IOC解决循环依赖](/patch/docs/Spring源码IOC解决循环依赖.md)
+
 - [About Me](README.md)
 
 
