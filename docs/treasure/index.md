@@ -18,6 +18,7 @@
 ## 好记星
 
 ##### [常用git命令](treasure/docs/常用git命令.md)
+##### [Github搜索](treasure/docs/Github搜索.md)
 
 ## Others
 
