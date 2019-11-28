@@ -4,11 +4,11 @@
 
 - <font color="#808080">机器 碎片</font> :wrench: 
 
-  - [Quick start :arrow_right:](/patch/index.md)
+  - <font color="red">[Quick start :arrow_right:](/patch/index.md)</font>
 
-- 代码 代码 :computer:
+<!-- - 代码 代码 :computer:
 
-  - [Quick start :arrow_right:](/code/index.md)
+  - [Quick start :arrow_right:](/code/index.md) -->
 
 - <font color="#6495ED">奇珍 异宝</font> :white_flower:
 

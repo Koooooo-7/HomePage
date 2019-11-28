@@ -25,6 +25,4 @@
 ##### [MySQL基础知识](/patch/docs/MySQL基础知识.md)
 ##### [Lock和Condition](/patch/docs/Lock和Condition.md)
 ##### [Spring源码IOC解决循环依赖](/patch/docs/Spring源码IOC解决循环依赖.md)
-
-
-
+##### [InheritableThreadLocal 可继承的本地线程变量](/patch/docs/InheritableThreadLocal.md)
