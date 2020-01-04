@@ -25,3 +25,20 @@ sudo systemctl enable docker
 docker version  
 `  
 :dog: :dog: :dog:
+
+---
+> tips:  
+
+- `yum-config-manager`找不到命令。
+
+  缺少`yum-utils`包，安装`yum -y install yum-utils`即可。
+
+- 在虚拟机安装没有网络时的解决办法。
+
+  进入如下目录`cd /etc/sysconfig/network-scripts`，编辑`vi ifcfg-ens33`文件。
+
+  将`ONBOOT`属性更改为`yes`。
+  重启`reboot`即可。
+
+  [解决办法参考](https://blog.csdn.net/weixin_44603091/article/details/96297867)  
+
