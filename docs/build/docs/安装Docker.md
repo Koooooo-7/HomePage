@@ -12,7 +12,9 @@
 `yum list docker-ce --showduplicates | sort -r`
 
 ### 3 选择特定版本安装
-据说稳定版好，然后我也就安装了一个稳定版本，指定版本安装。
+安装最新版`yum install docker-ce`  
+
+不过据说稳定版好，然后我也就安装了一个稳定版本，指定版本安装。  
 `yum install docker-ce-17.12.0.ce-1.el7.centos`
 
 
@@ -41,4 +43,6 @@ docker version
   重启`reboot`即可。
 
   [解决办法参考](https://blog.csdn.net/weixin_44603091/article/details/96297867)  
+- 准备工作。
+  避免一些问题要先确保如`epel-release`源已安装或者更新，yum也已更新。
 
