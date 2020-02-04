@@ -46,7 +46,7 @@ npm i docsify-cli -g
 
 ### 拉取依赖
 
-**`npm bootstrap`**
+**`npm run bootstrap`**
 
 - 实际命令
 
@@ -56,7 +56,7 @@ npm i docsify-cli -g
 
 修改代码后进行重新构建，如有如`themes`下主题`.css`缺失等问题，构建完毕后放入（偷懒）即可:dog:。
 
-**`npm build`**
+**`npm run build`**
 
 - 实际命令
 
@@ -64,7 +64,9 @@ npm i docsify-cli -g
 
 ### 效果测试
 
-**`npm run dev`**
+**`npm run dev`**   
+或直接  
+**`npm run serve`**
 
 - 实际命令
 
