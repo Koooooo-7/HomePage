@@ -1,8 +1,8 @@
 ![logo](_media/icon.svg)
 
-# HomePage <small>2019</small>
+# HomePage <small>2020</small>
 
-> Koy's  pretty  library.
+> Koy's  Pretty  Blog.
 
 - Write Something Special
 - Coding Coding 
