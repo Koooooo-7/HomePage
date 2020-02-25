@@ -18,7 +18,7 @@ Docker是为了解决复杂（各种各样的接口，各种各样的生命周�
 
 ![](_media\20200220-03.png)
 
-> ### What is a Container? A standardized unit of software
+> What is a Container? A standardized unit of software
 
 **容器**是打包代码及其所有依赖项的标准软件单元，因此应用程序可以从一个计算环境快速可靠地运行到另一个计算环境。
 
@@ -185,7 +185,7 @@ docker run -it --name koytest -v /home/hv:/home/cv centos:latest
 
 ![](_media\20200220-08.png)
 
-![1582640049936](C:\Users\Wood Zhuang\Desktop\HomePage\docs\patch\docs\_media\20200220-09.png)
+![1582640049936](_media\20200220-09.png)
 
 此时发现对应的目录已经挂载上去了。:dog:
 
@@ -209,5 +209,5 @@ docker run -it --name koytest -v /home/hv1:/home/cv1:ro centos:latest
 docker volume rm myvolume
 ```
 
-![1582641998950](C:\Users\Wood Zhuang\Desktop\HomePage\docs\patch\docs\_media\20200220-12.png)
+![1582641998950](_media\20200220-12.png)
 
