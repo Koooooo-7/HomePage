@@ -102,12 +102,19 @@
   </script>
 <!-- live2D -->
 <div class="waifu" style="position: fixed; bottom: -5px; right: 20px;">
-  <div class="waifu-tips"></div>
+  <div class="waifu-tips" align="center"></div>
   <canvas id="live2d" width="180" height="250" class="live2d"></canvas>
 </div>
   
 <script src="live2d/assets/waifu-tips.js"></script>
 <script src="live2d/assets/live2d.js"></script>
 <script type="text/javascript">initModel("live2d/assets/")</script>
+<!-- 2top -->
+<script type="text/javascript">
+ $(function(){
+   $("#live2d").on("click",()=>{
+    $("html,body").animate({scrollTop:"0px"},666)})
+ })
+</script>
 </body>
 </html>
