@@ -1,0 +1,27 @@
+{
+    "mouseover": [
+        {
+            "selector": ".waifu #live2d",
+            "text": ["<span style=\"color:#42b983;\">Welcome to my master's blog ~</span>"]
+        }
+    ],
+    "click": [
+        {
+            "selector": ".waifu #live2d",
+            "text": ["<span style=\"color:#42b983;\">Do u wanna star me ~</span>"]
+        }
+    ],"seasons": [
+        {
+            "date": "01/01",
+            "text": "<span style=\"color:#42b983;\">{year} is coming ~</span>"
+        },
+        {
+            "date": "02/14",
+            "text": "<span style=\"color:#42b983;\">Where is ur soulmate? ~</span>"
+        },
+        {
+            "date": "10/12",
+            "text": "<span style=\"color:#42b983;\">Master,Happy birthday ~</span>"
+        }
+    ]
+}
