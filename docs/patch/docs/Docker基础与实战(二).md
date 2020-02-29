@@ -40,13 +40,54 @@
 
 
 
-// TODO
-
 ## Docker镜像
 
-### `aufs`文件系统
+> Docker的镜像文件是存储在镜像仓库的，其实它的形式上来说和`Maven`有些相似。
 
-### 根据当前容器生成新的镜像
+### 镜像原理
 
-### DockerFile
+#### 联合文件系统(Union File System)
+
+Docker的镜像实际上是一层一层的文件系统组成的，这种层级的文件系统就是联合文件系统。
+
+加载过程：
+
+- `bootfs(boots file system)`
+
+  主要包含`bootsloader`和kernel，`bootloader`主要是引导加载`kernel`，Linux刚启动时会加载`bootfs文件系统`。**`在Docker镜像的最底层就是bootfs`**。`bootloader`主要是引导加载`kernel`，当`kernel`被加载到内存中后 `bootfs`就被卸载了。 
+
+- `rootfs (root file system) `
+
+  包含的就是典型 `Linux` 系统中的`/dev，/proc，/bin，/etc`等标准目录和文件。
+
+> `rootfs在各种不同`Linux`发行版（centos`,`ubuntu`）中会有区别，而`bootfs`却可能是共用的。
+
+
+
+在镜像加载的时候，是从底层往上一层一层加载的，并且这每一层是`可以被复用`的，就像是`Maven`仓库中拉下来的包，如果本地有，就直接用，没有再去仓库拉取。
+
+
+
+### 创建镜像
+
+#### 根据当前容器生成镜像
+
+```shell
+# 对当前的容器打成一个镜像名称为koyimage，tag为1.1
+docker commit 容器ID/镜像名  koyimage:1.1
+```
+
+此时有一个名为`koytest1`的容器。
+
+![](_media\20200229-01.png)
+
+将容器名称为`koytest1`的容器打成镜像，查看镜像，发现镜像已经生成。
+
+![](_media\20200229-02.png)
+
+
+
+// todo
+
+#### DockerFile
 
