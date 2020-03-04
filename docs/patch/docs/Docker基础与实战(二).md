@@ -89,5 +89,189 @@ docker commit 容器ID/镜像名  koyimage:1.1
 
 // todo
 
-#### DockerFile
+#### Dockerfile
 
+[官网的地址](https://docs.docker.com/engine/reference/builder/)在这里放在最前面，表示尊重:cat:。
+
+> `DockerFile`，简单来说就是根据配置文件去生成镜像，某些方面来说和`k8s`的声明式`yaml`很像:dog:。
+
+对构建`Dockerfile`的几个建议：
+
+- 尽量构建单独的镜像，不在一个Dokcerfile中构建多个，层次清晰。
+- 不要在根目录`/`构建镜像，最好在一个单独的目录中，里面只有构建Dockerfile所需的相关文件。
+- 通过`.dokcerignore`文件，将不需要的文件都排除出去，减少镜像体积。
+
+下面介绍一下，构建`Dockerfile`经常使用的几个参数。
+
+| 指令       | 简要说明                                                     |
+| ---------- | ------------------------------------------------------------ |
+| FROM       | 指定要创建当前镜像所使用的基础镜像。                         |
+| MAINTAINER | 指定作者等相关信息，就是一个注释备注内容。                   |
+| LABLE      | 相当于给这个镜像备注设置一些元数据信息。                     |
+| EVN        | 定义的环境变量，可以在下文和容器中引用。在镜像启动容器后`env`命令可以查看定义的变量。 |
+| RUN        | 在构建容器时要执行的命令。                                   |
+| COPY       | 单纯把外部源文件拷贝进去容器的目的地地址。                   |
+| ADD        | 把外部源文件（可以是连接）拷贝进去容器的目的地地址并解压。   |
+| WORKDIR    | 设置进入容器后的`落脚点`。                                   |
+| VOLUME     | 定义可以被外部挂载的数据卷。                                 |
+| ONBUILD    | 当前容器被作为其他容器引用的基础镜像构建时执行的命令。       |
+| EXPOSE     | 容器对外暴露的端口                                           |
+| ENTRYPOINT | 指定容器启动程序及参数，在启动容器时添加的参数都会追加在后面。 |
+| CMD        | 指定容器启动程序及参数，在启动容器时添加的参数命令会覆盖当前的命令。 |
+
+> 当`ENTRYPOINT`和`CMD`同时存在时，`CMD`的内容就成了`ENTRYPOINT`的参数，即<ENTRYPOINT> "<CMD>"。
+
+下面我们以[mysql的官方镜像](https://github.com/docker-library/mysql/blob/master/8.0/Dockerfile)`Dockfile`来解释一下（`其实debian的命令我也不太懂，主要看结构`）。
+
+```shell
+# 以debian的buster-slim版本的镜像为基础镜像。
+FROM debian:buster-slim
+
+# 运行命令添加相应的用户和用户组
+# add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
+RUN groupadd -r mysql && useradd -r -g mysql mysql
+
+# 运行命令
+RUN apt-get update && apt-get install -y --no-install-recommends gnupg dirmngr && rm -rf /var/lib/apt/lists/*
+
+# 设置环境变量
+# add gosu for easy step-down from root
+ENV GOSU_VERSION 1.7
+RUN set -x \
+	&& apt-get update && apt-get install -y --no-install-recommends ca-certificates wget && rm -rf /var/lib/apt/lists/* \
+	&& wget -O /usr/local/bin/gosu "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$(dpkg --print-architecture)" \
+	&& wget -O /usr/local/bin/gosu.asc "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$(dpkg --print-architecture).asc" \
+	&& export GNUPGHOME="$(mktemp -d)" \
+	&& gpg --batch --keyserver ha.pool.sks-keyservers.net --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4 \
+	&& gpg --batch --verify /usr/local/bin/gosu.asc /usr/local/bin/gosu \
+	&& gpgconf --kill all \
+	&& rm -rf "$GNUPGHOME" /usr/local/bin/gosu.asc \
+	&& chmod +x /usr/local/bin/gosu \
+	&& gosu nobody true \
+	&& apt-get purge -y --auto-remove ca-certificates wget
+
+RUN mkdir /docker-entrypoint-initdb.d
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+# for MYSQL_RANDOM_ROOT_PASSWORD
+		pwgen \
+# for mysql_ssl_rsa_setup
+		openssl \
+# FATAL ERROR: please install the following Perl modules before executing /usr/local/mysql/scripts/mysql_install_db:
+# File::Basename
+# File::Copy
+# Sys::Hostname
+# Data::Dumper
+		perl \
+# install "xz-utils" for .sql.xz docker-entrypoint-initdb.d files
+		xz-utils \
+	&& rm -rf /var/lib/apt/lists/*
+
+RUN set -ex; \
+# gpg: key 5072E1F5: public key "MySQL Release Engineering <mysql-build@oss.oracle.com>" imported
+	key='A4A9406876FCBD3C456770C88C718D3B5072E1F5'; \
+	export GNUPGHOME="$(mktemp -d)"; \
+	gpg --batch --keyserver ha.pool.sks-keyservers.net --recv-keys "$key"; \
+	gpg --batch --export "$key" > /etc/apt/trusted.gpg.d/mysql.gpg; \
+	gpgconf --kill all; \
+	rm -rf "$GNUPGHOME"; \
+	apt-key list > /dev/null
+
+ENV MYSQL_MAJOR 8.0
+ENV MYSQL_VERSION 8.0.19-1debian10
+
+RUN echo "deb http://repo.mysql.com/apt/debian/ buster mysql-${MYSQL_MAJOR}" > /etc/apt/sources.list.d/mysql.list
+
+# the "/var/lib/mysql" stuff here is because the mysql-server postinst doesn't have an explicit way to disable the mysql_install_db codepath besides having a database already "configured" (ie, stuff in /var/lib/mysql/mysql)
+# also, we set debconf keys to make APT a little quieter
+RUN { \
+		echo mysql-community-server mysql-community-server/data-dir select ''; \
+		echo mysql-community-server mysql-community-server/root-pass password ''; \
+		echo mysql-community-server mysql-community-server/re-root-pass password ''; \
+		echo mysql-community-server mysql-community-server/remove-test-db select false; \
+	} | debconf-set-selections \
+	&& apt-get update && apt-get install -y mysql-community-client="${MYSQL_VERSION}" mysql-community-server-core="${MYSQL_VERSION}" && rm -rf /var/lib/apt/lists/* \
+	&& rm -rf /var/lib/mysql && mkdir -p /var/lib/mysql /var/run/mysqld \
+	&& chown -R mysql:mysql /var/lib/mysql /var/run/mysqld \
+# ensure that /var/run/mysqld (used for socket and lock files) is writable regardless of the UID our mysqld instance ends up having at runtime
+	&& chmod 777 /var/run/mysqld
+	
+# 声明容器可以被挂载的数据卷
+VOLUME /var/lib/mysql
+# Config files
+# 拷贝复制文件
+COPY config/ /etc/mysql/
+COPY docker-entrypoint.sh /usr/local/bin/
+RUN ln -s usr/local/bin/docker-entrypoint.sh /entrypoint.sh # backwards compat
+# 定义了一个要执行的脚本
+ENTRYPOINT ["docker-entrypoint.sh"]
+
+# 指定暴露出去的端口
+EXPOSE 3306 33060
+# 因为上面出现了ENTRYPOINT 此时CMD的命令成为了上面的参数
+CMD ["mysqld"]
+```
+
+上述的[docker-entrypoint.sh](https://github.com/docker-library/mysql/blob/master/8.0/docker-entrypoint.sh)文件里面可以看到，在启动`mysql`前做了很多的工作为了确保可以启动起来。
+
+### 创建自己的CentOS镜像
+
+#### 编写`Dockerfile`
+
+![](_media\20200304-01.png)
+
+#### 生成镜像
+
+> `docker build -f Dokcerfile文件地址  -t 镜像名词:tag  .`
+
+指定Dockerfile（此时的Dockerfile有点小问题你发现了吗）构建了 `koy/image01:1.1`镜像。
+
+![](_media\20200304-02.png)
+
+此时发现镜像已经生成。:rocket:
+
+![](_media\20200304-03.png)
+
+接下来我们看看生成的镜像信息。
+
+`docker [image] inspect koy/image:1.1`
+
+![](_media\20200304-04.png)
+
+![](_media\20200304-05.png)
+
+
+
+#### 运行容器
+
+> 我事先创建了一个容器数据卷`koy1`，现在启动时进行挂载。
+>
+> 添加了`/bin/bash`命令，是因为上面构建`Dockerfile`中的`CMD`命令少了`/`，直接翻车。:dog:
+
+发现容器运行成功，文件也拷贝进来了，并且落脚点也是我们自己设置的`WORKDIR`。
+
+![](_media\20200304-06.png)
+
+再来看看此时容器的信息，发现容器的数据卷已经挂载上去了。
+
+> `docker inspect koyctos`
+
+![](_media\20200304-07.png)
+
+
+
+
+
+### 总结
+
+对于Docker的基本知识的掌握和使用进行了总结。
+
+基本的常用的命令大致就是上面这些，但是在工程化时就会有更多复杂的配置需要去做了解。
+
+然而对于容器编排，更多的应用，就期待我`K8s`的内容吧。:rocket:
+
+
+
+---
+
+参考 [Dockerfile指令详解 && ENTRYPOINT 指令](https://www.cnblogs.com/reachos/p/8609025.html)
