@@ -32,7 +32,7 @@
 
 ### chroot
 
-**`chroot`**是在`unix`系统的一个操作，针对正在运作的软件进程和它的[子进程](https://zh.wikipedia.org/wiki/子进程)，改变它外显的[根目录](https://zh.wikipedia.org/wiki/根目录)。一个运行在这个环境下，经由`chroo`t设置根目录的程序，它不能够对这个指定根目录之外的文件进行访问动作，不能读取，也不能更改它的内容。
+**`chroot`**是在`unix`系统的一个操作，针对正在运作的软件进程和它的[子进程](https://zh.wikipedia.org/wiki/子进程)，改变它外显的[根目录](https://zh.wikipedia.org/wiki/根目录)。一个运行在这个环境下，经由`chroot`设置根目录的程序，它不能够对这个指定根目录之外的文件进行访问动作，不能读取，也不能更改它的内容。
 
 **`chroot命令`**用来在指定的根目录下运行指令。`chroot`，即 `change root directory`。在` linux` 系统中，系统默认的目录结构都是以`/`，即是以根 (`root`) 开始的。而在使用` chroot `之后，系统的目录结构将以指定的位置作为`/`位置。
 
@@ -87,8 +87,7 @@ docker commit 容器ID/镜像名  koyimage:1.1
 
 
 
-// todo
-
+---
 #### Dockerfile
 
 [官网的地址](https://docs.docker.com/engine/reference/builder/)在这里放在最前面，表示尊重:cat:。
