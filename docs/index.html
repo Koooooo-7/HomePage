@@ -6,6 +6,7 @@
   <meta charset="UTF-8">
   <title>Koooooo-7</title>
   <link rel="stylesheet" href="//unpkg.com/docsify/themes/vue.css">
+  <link rel="stylesheet"  href="//cdn.jsdelivr.net/npm/docsify-dark-mode@0.6.1/dist/style.css"/>
   <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
@@ -29,7 +30,11 @@
      subMaxLevel: 3, // 定制的同时激活自动目录生成功能
      auto2top: true, // 切换页面后是否跳转到顶部
      // formatUpdated: '{YYYY}-{MM}-{DD}', //文档更新时间
-
+     darkMode: {
+        light: {
+          toggleBtnBg: '#42b983'
+        }
+      },
 
      //搜索功能需要引入
      search: {
@@ -94,6 +99,7 @@
   <script src="//unpkg.com/prismjs/components/prism-java.js"></script>
   <script src="//unpkg.com/prismjs/components/prism-python.js"></script>
   <script src="//unpkg.com/prismjs/components/prism-php.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/docsify-dark-mode@0.6.1/dist/index.js"></script>
    <!-- F12 -->
   <script type="text/javascript">
     console.log("==================================================")
