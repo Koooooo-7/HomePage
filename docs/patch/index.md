@@ -29,3 +29,4 @@
 ##### [Spring源码IOC解决循环依赖](/patch/docs/Spring源码IOC解决循环依赖.md)
 ##### [InheritableThreadLocal 可继承的本地线程变量](/patch/docs/InheritableThreadLocal.md)
 ##### [JDK1.8的Optional](/patch/docs/JDK1.8的Optional.md)
+##### [G1垃圾回收器](/patch/docs/G1垃圾回收器.md)
