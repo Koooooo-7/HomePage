@@ -49,6 +49,8 @@
 
   - [JDK1.8的Optional](/patch/docs/JDK1.8的Optional.md)
 
+  - [G1垃圾回收器](/patch/docs/G1垃圾回收器.md)
+
 - [About Me](README.md)
 
 
