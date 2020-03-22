@@ -221,5 +221,13 @@ ExecutorService executorService = Executors.newFixedThreadPool(10);
 >
 > ​                                                                                                                               《阿里巴巴`java`开发手册》
 
-// TODO: WaitingRejectHandlerThreadPool 
-   记录拒绝次数，可重试的线程池，采用LocalSupport去暂时等待。
+
+
+##  WaitingRejectHandlerThreadPool 
+
+新增示例完整代码。
+
+> Note:  定义一个记录拒绝次数，可重试的线程池，线程次和拒绝策略的参数仅用于示例。
+
+[threadpool-example](https://github.com/Koooooo-7/HomePage-Code/tree/master/threadpool-example)
+
