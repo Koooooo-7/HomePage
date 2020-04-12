@@ -1,9 +1,9 @@
 # HomePage
 
-[![Join the chat at https://gitter.im/Koooooo7/community](https://badges.gitter.im/Koooooo7/community.svg)](https://gitter.im/Koooooo7/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
+[![Join the chat at https://gitter.im/Koooooo7/community](https://badges.gitter.im/Koooooo7/community.svg)](https://gitter.im/Koooooo7/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)      [![koy-homepage](https://img.shields.io/badge/Koy-HomePage-brightgreen)](https://github.com/Koooooo-7)      [![blog-homepage](https://img.shields.io/badge/Blog-HomePage-orange)](https://koooooo.ko8e24.top)
 
 <!-- for github search text -->
+
 ## HomePage
 
 > 为了更好的阅读体验，默认直接指向了我的博客地址。:dog:
