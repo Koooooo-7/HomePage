@@ -30,3 +30,4 @@
 ##### [InheritableThreadLocal 可继承的本地线程变量](/patch/docs/InheritableThreadLocal.md)
 ##### [JDK1.8的Optional](/patch/docs/JDK1.8的Optional.md)
 ##### [G1垃圾回收器](/patch/docs/G1垃圾回收器.md)
+##### [Java并发之锁的升级](/patch/docs/Java并发之锁的升级.md)
