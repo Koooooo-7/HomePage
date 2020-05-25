@@ -53,6 +53,8 @@
 
   - [Java并发之锁的升级](/patch/docs/Java并发之锁的升级.md)
 
+  - [Happens-before](/patch/docs/Happens-before.md)
+
 - [About Me](README.md)
 
 
