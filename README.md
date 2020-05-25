@@ -30,6 +30,9 @@
 
 ##### [Java并发之锁的升级](https://koooooo.ko8e24.top/#/patch/docs/Java并发之锁的升级.md)
 
+##### [Happens-before](##### [Java并发之锁的升级](https://koooooo.ko8e24.top/#/patch/docs/Happens-before.md)
+ 
+
 ---
 
 
