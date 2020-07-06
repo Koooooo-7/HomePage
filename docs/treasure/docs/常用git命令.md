@@ -60,4 +60,22 @@ cat ~/.ssh/id_rsa.pub                                 # 查看 ssh公钥
 ssh -T git@github.com                                 # 与 Github 进行验证
 ```
 
-原档来源。[chenjiandongx](https://github.com/chenjiandongx/Blog/blob/master/%E5%B8%B8%E7%94%A8%20Git%20%E5%91%BD%E4%BB%A4%E6%95%B4%E7%90%86.md)
+## Github 相关命令
+
+```shell
+# 需要设置本地仓库和PR所在仓库同源(upstream)，或直接本地仓库就是原仓库clone的即可。
+# /pull/<PR号#1271>/head:本地分支名<自定义>
+git fetch origin  pull/1271/head:vue-demo              # 拉取PR
+
+git remote -v                                          # 查看远程仓库信息
+```
+
+>When a repo is cloned, it has a default remote called origin that points to your fork on GitHub, not the original repo it was forked from.
+>
+>To keep track of the original repo, you need to add another remote named upstream
+>
+>git remote add upstream git://github.com/user/repo_name.git
+
+
+
+参考原档来源。[chenjiandongx](https://github.com/chenjiandongx/Blog/blob/master/%E5%B8%B8%E7%94%A8%20Git%20%E5%91%BD%E4%BB%A4%E6%95%B4%E7%90%86.md)
