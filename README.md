@@ -31,7 +31,6 @@
 ##### [Java并发之锁的升级](https://koooooo.ko8e24.top/#/patch/docs/Java并发之锁的升级.md)
 
 ##### [Happens-before](##### [Java并发之锁的升级](https://koooooo.ko8e24.top/#/patch/docs/Happens-before.md)
- 
 
 ---
 
@@ -91,6 +90,8 @@
 
 ##### [JDK1.8u201 安装](https://koooooo.ko8e24.top/#/build/docs/安装JDK1.8u201.md)
 
+##### [在Docker中部署Jenkins](https://koooooo.ko8e24.top/#/build/docs/在Docker中部署Jenkins.md)
+
 ##### [Kafka集群搭建(含ZooKeeper集群搭建)](https://koooooo.ko8e24.top/#/build/docs/Kafka集群搭建(含ZooKeeper集群搭建).md)
 
 ##### [LNMP 搭建](https://koooooo.ko8e24.top/#/build/docs/搭建LNMP.md)
@@ -116,7 +117,7 @@
 ##### [PageHelper对分页数据的再处理](https://koooooo.ko8e24.top/#/patch/docs/PageHelper对分页数据的再处理.md)
 ##### [服务器常用小指令](https://koooooo.ko8e24.top/#/patch/docs/服务器常用小指令.md)
 ##### [微服务间服务接口调用](https://koooooo.ko8e24.top/#/patch/docs/微服务间服务接口调用.md)
- 
+
 
 <!-- cover -->
 ![logo](docs/_media/icon.svg)
