@@ -21,6 +21,8 @@
 
 #####  [JDK1.8u201 安装](build/docs/安装JDK1.8u201.md)
 
+##### [在Docker中部署Jenkins](build/docs/在Docker中部署Jenkins.md)
+
 ## K
 
 ##### [Kafka集群搭建(含ZooKeeper集群搭建)](build/docs/Kafka集群搭建(含ZooKeeper集群搭建).md)
