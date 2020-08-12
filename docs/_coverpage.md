@@ -9,6 +9,8 @@
 - Hold On
 - One
 
-<!-- [GitHub](https://github.com/docsifyjs/docsify/)
+[GitHub](https://github.com/Koooooo-7)
+
+<!--
 [Getting Started](#docsify)
  -->
