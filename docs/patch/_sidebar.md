@@ -55,6 +55,8 @@
 
   - [Happens-before](/patch/docs/Happens-before.md)
 
+  - [@FunctionalInterface](/patch/docs/@FunctionalInterface.md)
+
 - [About Me](README.md)
 
 
