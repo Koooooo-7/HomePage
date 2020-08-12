@@ -13,10 +13,15 @@
   <div id="app">Loading...</div>
   <script>
     window.$docsify = {
-      //侧边栏title
+      // 侧边栏title
      name:'Koooooo-7',
-     //配置仓库地址github右上角仓库组件
-     repo: 'https://github.com/Koooooo-7',
+     // 配置右上角仓库组件
+     repo: 'true',
+     corner:{
+        url:"https://github.com/Koooooo-7",
+        icon:"live2d/assets/poi.gif",
+        width:60
+     },
      // _404.md
      // notFoundPage: true,
 
@@ -89,6 +94,7 @@
   <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
   <script src="//unpkg.com/docsify/lib/plugins/search.js"></script>
   <script src="//unpkg.com/docsify/lib/plugins/emoji.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify-corner/dist/docsify-corner.min.js"></script>
   <!-- 引入外部JS -->
   <script src="//unpkg.com/docsify/lib/plugins/external-script.js"></script>
   <!-- 图片缩放 -->
