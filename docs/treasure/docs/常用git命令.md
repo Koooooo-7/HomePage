@@ -51,7 +51,12 @@ git show commit -commit_id                            # 查看指定 id 的提�
 git show -all                                         # 显示提交历史
 ```
 
+参考原档来源。[chenjiandongx](https://github.com/chenjiandongx/Blog/blob/master/%E5%B8%B8%E7%94%A8%20Git%20%E5%91%BD%E4%BB%A4%E6%95%B4%E7%90%86.md)
+
+---
+
 ## Git 配置 Github 账号
+
 ```shell
 git config --global user.name "your_name"             # 配置 Github 账号
 git config --global user.email "your_email"           # 配置 Github 邮箱
@@ -60,7 +65,11 @@ cat ~/.ssh/id_rsa.pub                                 # 查看 ssh公钥
 ssh -T git@github.com                                 # 与 Github 进行验证
 ```
 
+---
+
 ## Github 相关命令
+
+### 拉取PR
 
 ```shell
 # 需要设置本地仓库和PR所在仓库同源(upstream)，或直接本地仓库就是原仓库clone的即可。
@@ -74,8 +83,26 @@ git remote -v                                          # 查看远程仓库信�
 >
 >To keep track of the original repo, you need to add another remote named upstream
 >
->git remote add upstream git://github.com/user/repo_name.git
+>`git remote add upstream git://github.com/user/repo_name.git`
 
 
 
-参考原档来源。[chenjiandongx](https://github.com/chenjiandongx/Blog/blob/master/%E5%B8%B8%E7%94%A8%20Git%20%E5%91%BD%E4%BB%A4%E6%95%B4%E7%90%86.md)
+### 给PR新增commit
+
+> 主要是给自己参与维护的项目使用，需要PR提交的人开启`Allow edits by maintainers`。
+
+```shell
+# 在自己的folk仓库中添加一个上游，名为pr-xxx 地址为提交PR的人的folk仓库地址。
+git remote add pr-xxx pr-repository.git
+# 同步一下这个PR的上游分支
+git fetch pr-xxx
+# 检出其提交PR的分支 pr-v2-fix-xxx，并新建成v2-fix-xxx分支（因为HEAD模式你改不了）。
+git checkout -b pr-v2-fix-xxx pr-xxx/v2-fix-xxx
+# 造作，然后提交
+git commit -am "add some new things in this PR"
+# 推送，把对应更改的本地分支pr-v2-fix-xxx推送到指向远端的pr-xxx对应的HEAD。
+git push pr-xxx HEAD:pr-v2-fix-xxx
+```
+
+参考[Adding Commits to Someone Else's Pull Request](https://tighten.co/blog/adding-commits-to-a-pull-request/)
+
