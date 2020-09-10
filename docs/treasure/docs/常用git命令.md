@@ -106,3 +106,22 @@ git push pr-xxx HEAD:pr-v2-fix-xxx
 
 参考[Adding Commits to Someone Else's Pull Request](https://tighten.co/blog/adding-commits-to-a-pull-request/)
 
+
+
+## 分支开发与同步
+
+> 主要是为了保证在进行提交时，不会携带上之前的提交（不同步那HEAD会始终还是folk时的指向），所以需要保持一直和上游的同步。
+
+```shell
+# clone自己folk的仓库到本地后添加上游仓库(源仓库)
+git add remote upstream git://github.com/user/repo_name.git`
+# 拉取源仓库最新代码
+git fetch upstream
+# 同步源仓库(merge,rebase)，我就比较粗暴了，直接切换到原仓库我需要的分支，比如v2
+git checkout upstream/v2
+# 同样的检出新分支，跳出HEAD模式
+git checkout -b my-v2
+# 此时该分支和源仓库是同步的，在这里造作之后，提交代码，此时因为有了不止一个上游，所以需要指定origin，即是要将my-v2推送到我们自己flok的远程仓库。
+git push --set-upstream origin my-v2
+```
+
