@@ -20,8 +20,6 @@
 
     [在Docker中部署Jenkins](build/docs/在Docker中部署Jenkins.md)
 
-    
-
   - **K**
 
     [Kafka集群搭建(含ZooKeeper集群搭建)](build/docs/Kafka集群搭建(含ZooKeeper集群搭建).md)
@@ -30,6 +28,10 @@
 
     [LNMP 搭建](build/docs/搭建LNMP.md)
     [Linux 内核升级](build/docs/升级Linux内核.md)
+
+  - **M**
+
+    [Metabase(数据可视化)](build/docs/在Docker中玩一下Metabase.md)
 
   - **P**
 
