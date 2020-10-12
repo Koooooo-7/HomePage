@@ -46,7 +46,7 @@ npm i docsify-cli -g
 
 ### 拉取依赖
 
-**`npm run bootstrap`**
+**`npm run bootstrap`** / **`npm run install`**
 
 - 实际命令
 
