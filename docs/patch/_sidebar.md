@@ -59,7 +59,9 @@
 
   - [@FunctionalInterface](/patch/docs/@FunctionalInterface.md)  
 
-  - [SpringBoot源码解读01](/patch/docs/SpringBoot源码01.md)
+  - [SpringBoot源码解读01](/patch/docs/SpringBoot源码01.md)  
+
+  - [Redis基础](/patch/docs/Redis基础.md) 
 
 - [About Me](README.md)
 
