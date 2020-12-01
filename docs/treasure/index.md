@@ -11,6 +11,7 @@
 ##### [一个正则表达式测试并流程显示的网站](https://regexper.com/)
 ##### [VMWare需要的CentOS镜像地址](http://archive.kernel.org/centos-vault/)
 ##### [美团技术团队博客](https://tech.meituan.com/)
+##### [VIM基础练习](https://www.openvim.com/sandbox.html)
 
 ## 工具箱
 
