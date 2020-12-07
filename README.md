@@ -125,7 +125,7 @@
 <!-- cover -->
 ![logo](docs/_media/icon.svg)
 
-# HomePage <small>2019</small>
+# HomePage <small>2020</small>
 
 > Koy's  pretty  library.:rainbow:
 
