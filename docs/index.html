@@ -17,6 +17,14 @@
       s.parentNode.insertBefore(hm, s);
     })();
   </script>
+  <style>
+    body{
+      cursor: url(live2d/assets/cur.png), default;
+    }
+    a{
+       cursor: url(live2d/assets/cur2a.png),auto;
+    }
+  </style>
 </head>
 <body>
   <div id="app">Link Start...</div>
@@ -126,6 +134,7 @@
   
 <script src="live2d/assets/waifu-tips.js"></script>
 <script src="live2d/assets/live2d.js"></script>
+<script src="live2d/assets/vsclick.min.js"></script>
 <script type="text/javascript">initModel("live2d/assets/")</script>
 <!-- 2top -->
 <script type="text/javascript">
@@ -141,6 +150,13 @@
 window.onfocus = function() {
     document.title = "👻 | Chilling ~";
 }
+
+// click fruits
+let ck = new VsClick({
+  dom:"#main",
+})
+
+
 </script>
 <!-- 夜间模式 -->
 <script src="custom/darkmode.js"></script>
