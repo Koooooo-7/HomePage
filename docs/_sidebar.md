@@ -20,6 +20,6 @@
 
 - <font color="#FF7F50">咸鱼 生活</font> :guitar:
 
-  - [学习和生活的感悟 :arrow_right:](/insane/index.md)
+  - [学习和涂鸦的日常 :arrow_right:](/insane/index.md)
 
 - [About Me](README.md)
