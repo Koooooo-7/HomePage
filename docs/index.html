@@ -31,7 +31,7 @@
   <script>
     window.$docsify = {
       // 侧边栏title
-     name:'Koooooo-7',
+     name:'<b>HomePage<b>',
      // 配置右上角仓库组件
      repo: 'true',
      corner:{
@@ -43,28 +43,25 @@
      // notFoundPage: true,
 
       //...
-     coverpage: true, // 激活封面功能  _coverpage.md，可配置多个需要引入
-     onlyCover: false, // 主页仅加载封面，不能滚动到其他页
-     loadNavbar: true, // 定制导航栏   _navbar.md
-     auto2top: true, // 路线更改时滚动到屏幕顶部
-     loadSidebar: true, // 定制侧边栏   每一个模块_sideBar.md独立
-     // autoHeader: true // 自动为页面添加标题
-     subMaxLevel: 3, // 定制的同时激活自动目录生成功能
-     auto2top: true, // 切换页面后是否跳转到顶部
-     // formatUpdated: '{YYYY}-{MM}-{DD}', //文档更新时间
+     coverpage: true, 
+     onlyCover: false, 
+     loadNavbar: true, 
+     auto2top: true, 
+     loadSidebar: true,
+     subMaxLevel: 3, 
+     auto2top: true, 
      darkMode: {
         light: {
           toggleBtnBg: '#42b983'
         }
       },
 
-     //搜索功能需要引入
      search: {
           placeholder: 'Search',
           noData: ''
         },
       
-      //自定义插件
+    
       plugins: [
       //底部footer 文字内容来自 [一言 hitokoto] api
       function (hook) {
