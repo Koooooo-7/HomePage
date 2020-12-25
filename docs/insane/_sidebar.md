@@ -15,7 +15,8 @@
 
 - **算法小渣**
   - [LeetCode-02 两数相加](/insane/algorithm/LeetCode-02两数相加.md)
-
+  
+  - [LeetCode-72 编辑距离](/insane/algorithm/最小编辑距离.md)
 
 - [About Me](README.md)
 
