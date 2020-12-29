@@ -7,23 +7,11 @@
 
   - [Zookeeper学习小记](patch/docs/Zookeeper学习小记.md)
 
-  - [JS小组件模块](/patch/docs/JS小组件模块.md)
-
-  - [Promise](/patch/docs/Promise.md)
-
-  - [SpringBoot配置Durid连接池](/patch/docs/SpringBoot配置Durid连接池.md)
-
-  - [MyBatis-Plus整合PageHelper](/patch/docs/MyBatis-Plus整合PageHelper.md)
-
-  - [PageHelper对分页数据的再处理](/patch/docs/PageHelper对分页数据的再处理.md)
-
-  - [Elasticsearch入门](/patch/docs/Elasticsearch入门.md)
+  - [类加载与动态代理](/patch/docs/类加载与动态代理.md)
 
   - [Docker基础实战](/patch/docs/Docker基础实战.md)
 
   - [Docker基础与实战(二)](/patch/docs/Docker基础与实战(二).md)
-
-  - [服务器常用小指令](/patch/docs/服务器常用小指令.md)
   
   - [BBR拥塞控制算法原理](/patch/docs/BBR拥塞控制算法原理.md)
 
@@ -64,6 +52,20 @@
   - [SpringBoot源码解读02](/patch/docs/SpringBoot源码02.md)  
 
   - [Redis基础](/patch/docs/Redis基础.md) 
+
+  - [Promise](/patch/docs/Promise.md)
+
+  - [SpringBoot配置Durid连接池](/patch/docs/SpringBoot配置Durid连接池.md)
+
+  - [MyBatis-Plus整合PageHelper](/patch/docs/MyBatis-Plus整合PageHelper.md)
+
+  - [PageHelper对分页数据的再处理](/patch/docs/PageHelper对分页数据的再处理.md)
+
+  - [Elasticsearch入门](/patch/docs/Elasticsearch入门.md)
+
+  - [JS小组件模块](/patch/docs/JS小组件模块.md)
+  
+  - [服务器常用小指令](/patch/docs/服务器常用小指令.md)
 
 - [About Me](README.md)
 
