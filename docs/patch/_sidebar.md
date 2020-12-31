@@ -7,7 +7,7 @@
 
   - [Zookeeper学习小记](patch/docs/Zookeeper学习小记.md)
 
-  - [类加载与动态代理](/patch/docs/类加载与动态代理.md)
+  - [Java类加载机制](/patch/docs/Java类加载机制.md)
 
   - [Docker基础实战](/patch/docs/Docker基础实战.md)
 
