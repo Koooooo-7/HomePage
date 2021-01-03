@@ -13,6 +13,9 @@
       - [Vue 学习小记04](/insane/2019/Vue学习小记04.md)
       - [部署Vue项目](/insane/2019/部署Vue项目.md)
 
+  - *2021 -*
+    - [`RocketMQ`](/insane/2021/RocketMQ.md)
+      - [RocketMQ源码学习-namesrv]
 - **算法小渣**
   - [LeetCode-02 两数相加](/insane/algorithm/LeetCode-02两数相加.md)
   
