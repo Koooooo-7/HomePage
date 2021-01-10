@@ -1,4 +1,4 @@
-# RocketMQ源码学习-`namesrv`
+# RocketMQ源码学习- namesrv
 
 ## 概述
 

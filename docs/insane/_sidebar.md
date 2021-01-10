@@ -15,7 +15,7 @@
 
   - *2021 -*
     - [`RocketMQ`](/insane/2021/RocketMQ.md)
-      - [RocketMQ源码学习-namesrv]
+      - [RocketMQ源码学习-namesrv](/insane/2021/RocketMQ源码学习-namesrv.md)
 - **算法小渣**
   - [LeetCode-02 两数相加](/insane/algorithm/LeetCode-02两数相加.md)
   
