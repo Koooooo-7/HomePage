@@ -6,7 +6,7 @@
 
 - `NamesrvStartup`
 
-  解析命令行参数，获取配置信息，构造``NamesrvController`启动。
+  解析命令行参数，获取配置信息，构造`NamesrvController`启动。
 
 - `NamesrvController`
 
