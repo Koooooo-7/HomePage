@@ -5,7 +5,6 @@
 :mag: **快速索引**
 ## 综合
 
-##### [Quick Start docsify](patch/docs/Quick-Start-docsify.md)
 ##### [Kafka学习小记](patch/docs/Kafka学习小记.md)
 ##### [Zookeeper学习小记](patch/docs/Zookeeper学习小记.md)
 ##### [Java类加载机制](/patch/docs/Java类加载机制.md)
@@ -37,4 +36,6 @@
 ##### [MyBatis-Plus整合PageHelper](/patch/docs/MyBatis-Plus整合PageHelper.md) 
 ##### [PageHelper对分页数据的再处理](/patch/docs/PageHelper对分页数据的再处理.md)
 ##### [Elasticsearch入门](/patch/docs/Elasticsearch入门.md)
+##### [Quick Start docsify](patch/docs/Quick-Start-docsify.md)
+##### [Github Packages](patch/docs/Github-Packages.md)
 ##### [服务器常用小指令](/patch/docs/服务器常用小指令.md)
