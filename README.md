@@ -1,6 +1,6 @@
 # HomePage
 
-[![Join the chat at https://gitter.im/Koooooo7/community](https://badges.gitter.im/Koooooo7/community.svg)](https://gitter.im/Koooooo7/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)      [![koy-homepage](https://img.shields.io/badge/Koy-HomePage-brightgreen)](https://github.com/Koooooo-7)      [![blog-homepage](https://img.shields.io/badge/Blog-HomePage-orange)](https://koooooo.ko8e24.top)
+[![Join the chat at https://gitter.im/Koooooo7/community](https://badges.gitter.im/Koooooo7/community.svg)](https://gitter.im/Koooooo7/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)      [![koy-homepage](https://img.shields.io/badge/2021-HomePage-brightgreen)](https://github.com/Koooooo-7)      [![blog-homepage](https://img.shields.io/badge/Blog-HomePage-orange)](https://koooooo.ko8e24.top)
 
 <!-- for github search text -->
 
