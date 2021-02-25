@@ -56,8 +56,6 @@
 
 
 
-#### 
-
 ### 数据分片
 
 `Redis` 集群引入了**哈希槽slots**的概念使用数据分片（`sharding`）而非一致性哈希（`consistency hashing`）来实现。
@@ -71,6 +69,13 @@
 
 
 ## 业务应用
+
+##### `rpoplpush`
+当要对两个redis列表中的数据进行原子性操作：
+从一个列表的右侧`pop`出数据并从左侧`push`进去另外一个列表时，保持原子操作，操作失败会回滚。
+在`Springboot`的实现中，进行该操作会返回当前操作元素对象。需要注意的是，有一个实现有些不一样
+
+见[LettuceClusterListCommands](ihttps://github.com/spring-projects/spring-data-redis/blob/773acd09b2497690d2b8a0296852a9ea14d4ef58/src/main/java/org/springframework/data/redis/connection/lettuce/LettuceClusterListCommands.java#L103)。
 
 ##### 分布式锁
 
