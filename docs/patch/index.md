@@ -39,3 +39,4 @@
 ##### [Quick Start docsify](patch/docs/Quick-Start-docsify.md)
 ##### [Github Packages](patch/docs/Github-Packages.md)
 ##### [服务器常用小指令](/patch/docs/服务器常用小指令.md)
+##### [命令行翻译脚本](/patch/docs/命令行翻译脚本.md)
