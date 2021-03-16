@@ -59,7 +59,7 @@ git show -all                                         # 显示提交历史
 
 ```shell
 git config --global user.name "your_name"             # 配置 Github 账号
-git config --global user.email "your_email"           # 配置 Github 邮箱
+git config --global user.email "your_email"           # 配置 Github 邮箱,Github 会默认用邮箱识别用户，使用user.name可以会造成非自己提交的问题
 ssh-keygen -t rsa -C "your_email"                     # 设置 ssh key
 cat ~/.ssh/id_rsa.pub                                 # 查看 ssh公钥
 ssh -T git@github.com                                 # 与 Github 进行验证
