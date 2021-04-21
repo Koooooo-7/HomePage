@@ -102,3 +102,14 @@ main---main set String
 ## 结果分析
 
 分别使用`listContextHolder`和`stringContextHolder`对线程的局部变量内容进行操作后发现，实际上子线程从父线程复制过来的是变量的**引用**，对于`String`这种不可变类型就直接覆盖掉了，对于`List`则是拿到了`List`对象的引用继续进行的`add`操作。这一点要注意小心有坑。:dog:
+
+
+
+## 挖坑进阶
+
+在`线程池`中使用InheritableThreadLocal，会造成其失效，或者准确的说其传递的上下文由于交由线程池自己控制。传递的是复用线程池当时的上下文，而不是调用运行时的上下文，此时的传递已经没有意义。
+
+推荐使用开源包[transmittable-thread-local](https://github.com/alibaba/transmittable-thread-local)。
+
+或者自己封装线程池，使用额外的容器保存在`submit`或`execute`时需要传递的上下文内容。
+
