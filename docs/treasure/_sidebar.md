@@ -16,6 +16,7 @@
 
   - [常用git命令](treasure/docs/常用git命令.md)
   - [Github搜索](treasure/docs/Github搜索.md)
+  - [小指令集](treasure/docs/小指令集.md)
 
 - [About Me](README.md)
 
