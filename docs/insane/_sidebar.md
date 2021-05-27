@@ -21,10 +21,6 @@
 - **Kubernetes**
   - [`Kubernetes`](/insane/2021/Kubernetes.md)
 
-  - [K8s常用小指令]
-
-  - [Minikube实战]
-
 - **算法小渣**
   
   - [LeetCode-02 两数相加](/insane/algorithm/LeetCode-02两数相加.md)
