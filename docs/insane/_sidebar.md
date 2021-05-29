@@ -19,7 +19,6 @@
       - [RocketMQ源码学习-namesrv](/insane/2021/RocketMQ源码学习-namesrv.md)
       
 - **Kubernetes**
-  - [`Kubernetes`](/insane/2021/Kubernetes.md)
   - [`Minikube实战`](/insane/k8s/Minikube实战.md)
 
 - **算法小渣**
