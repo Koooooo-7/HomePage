@@ -20,6 +20,7 @@
       
 - **Kubernetes**
   - [`Minikube实战`](/insane/k8s/Minikube实战.md)
+  - [`插件-oidc-kubelogin`](/insane/k8s/Kubelogin-oidc.md)
 
 - **算法小渣**
   
