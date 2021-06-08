@@ -2,7 +2,7 @@
 
 - 
 
-# Iterm2
+## Iterm2
 
 - oh-my-zsh
 
