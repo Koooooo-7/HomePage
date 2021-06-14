@@ -1,4 +1,15 @@
+# Vim
+IDEA
+`.ideavimrc`
+```shell
+set ideajoin
+noremap H ^
+noremap L $
+inoremap jj <esc>
+```
+
 # Apps
+
 
 - 
 
