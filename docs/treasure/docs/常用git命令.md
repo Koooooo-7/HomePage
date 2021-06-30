@@ -125,3 +125,11 @@ git checkout -b my-v2
 git push --set-upstream origin my-v2
 ```
 
+## Git submodules
+有时候会有并行更新的不同的库，而不是会定时发布稳定版本的jar依赖时候。
+可以使用Git submodules结合Maven的Moudle解决依赖的问题。
+即将某个依赖的仓库设置为当前仓库的子Module，也就是说当前仓库就是一个多Module的仓库了，其中某些Module属于Git submodules.
+参考：
+[demo-1-cn](https://xiezefan.me/2016/08/13/maven_module_with_git_sub_module/)
+[demo-2-en]
+[gitsubmodules-doc](https://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-%E5%AD%90%E6%A8%A1%E5%9D%97)
