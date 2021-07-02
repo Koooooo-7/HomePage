@@ -1,9 +1,9 @@
-package com.koy.koshell.command.annotation;
-
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+// package com.koy.koshell.command.annotation;
+// 
+// import java.lang.annotation.ElementType;
+// import java.lang.annotation.Retention;
+// import java.lang.annotation.RetentionPolicy;
+// import java.lang.annotation.Target;
 
 /**
  * for the parameter of the ShellMethod
@@ -13,26 +13,26 @@ import java.lang.annotation.Target;
  * run(@ KoShellParameter ( key = " h ") host)
  *
  */
-@Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.PARAMETER)
-public @interface KoShellParameter {
+// @Retention(RetentionPolicy.RUNTIME)
+@T// arget(ElementType.PARAMETER)
+// public @interface KoShellParameter {
 
     String NONE = "__NONE__";
-    String NAME = "__NAME__";
+//     String NAME = "__NAME__";
 
     // parameter type
-    Class<?> type() default String.class;
+//     Class<?> type() default String.class;
 
     // parameter key, default the parameter name
-    String[] key() default {};
+//     String[] key() default {};
 
     // is this parameter optional, will be ignored when the default value is set
-    boolean isOptional() default false;
+//     boolean isOptional() default false;
 
     // default value
-    String defaultValue() default NONE;
+//     String defaultValue() default NONE;
 
     // size
-    int arity() default 1;
+//     int arity() default 1;
 
 }
