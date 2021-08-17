@@ -89,6 +89,8 @@ git remote -v                                          # 查看远程仓库信�
 
 ### 给PR新增commit
 
+####  fork仓库给主仓库的PR新增
+
 > 主要是给自己参与维护的项目使用，需要PR提交的人开启`Allow edits by maintainers`。
 
 ```shell
@@ -105,6 +107,43 @@ git push pr-xxx HEAD:pr-v2-fix-xxx
 ```
 
 参考[Adding Commits to Someone Else's Pull Request](https://tighten.co/blog/adding-commits-to-a-pull-request/)
+
+
+
+#### 给当前clone仓库的PR新增
+
+> 合作开发，给其中一个committer的PR新增新的提交。
+
+假设PR分支为`pr-remote-branch`
+
+```shell
+# 本地新建一个branch名为track-pr去track远程的pr-remote-branch分支
+git checkout -b track-pr remotes/origin/pr-remote-branch
+
+# 正常修改和提交 ...
+
+# 推送到原来的PR分支
+git push origin HEAD:pr-remote-branch
+
+```
+
+直接`git push`参考提示如下。
+
+```
+❯ git push 
+fatal: The upstream branch of your current branch does not match
+the name of your current branch.  To push to the upstream branch
+on the remote, use
+
+    git push origin HEAD:pr-remote-branch
+
+To push to the branch of the same name on the remote, use
+
+    git push origin HEAD
+
+To choose either option permanently, see push.default in 'git help config'.
+
+```
 
 
 
@@ -125,7 +164,10 @@ git checkout -b my-v2
 git push --set-upstream origin my-v2
 ```
 
+
+
 ## Git submodules
+
 有时候会有并行更新的不同的库，而不是会定时发布稳定版本的jar依赖时候。
 可以使用Git submodules结合Maven的Moudle解决依赖的问题。
 即将某个依赖的仓库设置为当前仓库的子Module，也就是说当前仓库就是一个多Module的仓库了，其中某些Module属于Git submodules.
