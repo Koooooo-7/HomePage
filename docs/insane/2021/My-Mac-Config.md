@@ -39,3 +39,9 @@ alias his="history"
 eval "$(thefuck --alias fuck)"
 ```
 
+# K8s
+```shell
+krew
+```
+- kubectx
+- kubens
