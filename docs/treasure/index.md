@@ -19,6 +19,7 @@
 ##### [SSHPASS远程免交互SSH](treasure/docs/SSHPASS.md)
 ##### [PDF文件处理库PDFBox&iText](treasure/index)
 ##### [Kafka可视化客户端KaDeck](https://www.getkadeck.com/#/)
+##### [在线校验Swagger](https://apitools.dev/swagger-parser/online/)
 
 ## 好记星
 
