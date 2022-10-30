@@ -13,6 +13,8 @@
 ##### [美团技术团队博客](https://tech.meituan.com/)
 ##### [VIM基础练习](https://www.openvim.com/sandbox.html)
 ##### [一个在线的可以和GitHub整合的IDE工具-repl](https://repl.it/)
+##### [壁纸site](https://bz.zzzmh.cn/)
+##### [壁纸site2](https://wallhaven.cc/)
 
 ## 工具箱
 
@@ -21,7 +23,6 @@
 ##### [Kafka可视化客户端KaDeck](https://www.getkadeck.com/#/)
 ##### [在线校验Swagger](https://apitools.dev/swagger-parser/online/)
 ##### [CSS 渐变色](https://color.oulu.me/)
-##### [壁纸site](https://bz.zzzmh.cn/)
 
 ## 好记星
 
