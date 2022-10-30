@@ -21,6 +21,7 @@
 ##### [Kafka可视化客户端KaDeck](https://www.getkadeck.com/#/)
 ##### [在线校验Swagger](https://apitools.dev/swagger-parser/online/)
 ##### [CSS 渐变色](https://color.oulu.me/)
+##### [壁纸site](https://bz.zzzmh.cn/)
 
 ## 好记星
 
