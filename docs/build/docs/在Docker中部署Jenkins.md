@@ -71,3 +71,8 @@ ip addr
 - 没有改Maven的中央仓库地址，拉不下来依赖，网不好。:dog:
 
 ![](_media\20200727-5.png)
+
+
+--- 
+
+使用参考[Learn Jenkins! Complete Jenkins Course - Zero to Hero](https://www.youtube.com/watch?v=6YZvp2GwT0A)
