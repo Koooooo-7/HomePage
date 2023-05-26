@@ -25,6 +25,7 @@
 ##### [在线校验Swagger](https://apitools.dev/swagger-parser/online/)
 ##### [CSS 渐变色](https://color.oulu.me/)
 ##### [转发github webhook到本机smee](https://smee.io/)
+##### [智能去除图片背景](https://www.remove.bg/zh/)
 
 ## 好记星
 
