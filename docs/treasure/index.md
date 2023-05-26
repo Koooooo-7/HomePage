@@ -15,6 +15,7 @@
 ##### [一个在线的可以和GitHub整合的IDE工具-repl](https://repl.it/)
 ##### [壁纸site](https://bz.zzzmh.cn/)
 ##### [壁纸site2](https://wallhaven.cc/)
+##### [在mac上任意更换app icon](https://appleinsider.com/articles/21/01/06/how-to-change-app-icons-on-macos)
 
 ## 工具箱
 
