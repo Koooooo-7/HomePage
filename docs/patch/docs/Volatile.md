@@ -2,6 +2,8 @@
 
 **Volatile**关键字在使用单例模式或者涉及到并发编程的时候肯定不会陌生。
 
+update: [JRS133](https://www.cs.umd.edu/~pugh/java/memoryModel/jsr-133-faq.html)
+
 > 部分内容算是对于《Java并发编程的艺术》第三章的读书笔记:dog:。
 
 我们知道它有以下基本的两个特性：
