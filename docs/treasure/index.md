@@ -37,6 +37,7 @@
 ##### [一种分布式服务治理框架的设计与实现-知网](https://kns.cnki.net/kcms/detail/detail.aspx?dbcode=CMFD&dbname=CMFD201701&filename=1016119555.nh)
 ##### [rabbitmq-tutorials](https://www.rabbitmq.com/tutorials/tutorial-four-python.html)
 ##### [replit-在线语言runner-build](https://replit.com/languages)
+##### [关于重构和设计模式的书](https://refactoringguru.cn/)
 
 
 
