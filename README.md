@@ -129,7 +129,7 @@
 <!-- cover -->
 ![logo](docs/_media/icon.svg)
 
-# HomePage <small>2021</small>
+# HomePage <small>2023</small>
 
 > Koy's  pretty  library.:rainbow:
 
