@@ -271,3 +271,18 @@ If this is a private repository, see https://golang.org/doc/faq#git_https for ad
 - [How to use ftp in combination with .netrc](http://www.mavetju.org/unix/netrc.php)    
 
 - [Go doc: Why does "go get" use HTTPS when cloning a repository?](https://go.dev/doc/faq#git_https)
+
+
+## Github 如何重新打开一个被`force-push`的PR
+如果我们关闭了一个PR, 然后在这个PR所在的分支有了force-push, 此时`Reopen` 的button就被disable了。
+
+此时需要做的操作是把PR分支的commit reset到被close的PR最后一个commit hash上, 即
+```
+Instructions
+1. Write down the current commit hash of your PR-branch git log --oneline -1 <PR-BRANCH>
+2. Write down the latest commit hash on github before the PR has been closed.
+git push -f origin <GITHUB-HASH-FROM-STEP-2>:<PR-BRANCH>
+Reopen the PR.
+```
+
+Refer [How to reopen a pull-request after a force-push? gist](https://gist.github.com/robertpainsi/2c42c15f1ce6dab03a0675348edd4e2c)
