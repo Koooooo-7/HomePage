@@ -72,6 +72,8 @@
   - [命令行翻译脚本](/patch/docs/命令行翻译脚本.md)
 
   - [SpringBoot 配置小记](/patch/docs/SpringBoot.md)
+
+  - [发布包到MavenCentral仓库](/patch/docs/发布包到MavenCentral仓库.md)
 - [About Me](README.md)
 
 
