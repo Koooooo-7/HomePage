@@ -2,13 +2,11 @@
 
 # HomePage <small>2023</small>
 
-> Koy's  Pretty  Blog.:rainbow:
+> Today is a new day.:rainbow:
 
-- Write Something Special
-- Coding Coding 
-- Hold On
-- One
 
+
+[ Know more -> ](https://github.com/Koooooo-7)
 [ :octocat: GitHub](https://github.com/Koooooo-7)
 
 <!--
