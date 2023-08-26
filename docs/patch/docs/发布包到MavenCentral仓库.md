@@ -213,7 +213,38 @@ gpg --export --armor --output pubring.asc
 gpg --keyring secring.gpg --export-secret-keys > ~/.gnupg/secring.gpg
 ```
 
+常用命令：
+```
+创建密钥：
+$ gpg --gen-key
 
+查看公钥
+$ gpg --list-key 
+
+查看私钥
+$ gpg --list-secret-key
+
+公钥删除
+$ gpg --delete-keys Key标识名
+
+私钥删除
+$ gpg --delete-secret-keys Key标识名
+
+公钥导出
+$ gpg --export 标识名 > 导出文件名（多以asc为文件后缀）
+gpg --armor --export XXXX > pub.key
+
+私钥导出
+$ gpg --export-secret-key 标识名 > 导出文件名（多以asc为文件后缀）
+gpg --armor --export-secret-keys XXXX > pri.key
+
+密钥导入
+$ gpg --import 密钥文件
+
+修改密钥
+$ gpg --edit-key 标识名
+
+```
 ## 发布
 
 本地直接IDEA运行 gradle `signMavenJavaPublication` 和 `publish` 完成签名并发布到中央仓库即可。
