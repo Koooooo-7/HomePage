@@ -11,7 +11,10 @@
       - [Vue 学习小记02](/insane/2019/Vue学习小记02.md)
       - [Vue 学习小记03](/insane/2019/Vue学习小记03.md)
       - [Vue 学习小记04](/insane/2019/Vue学习小记04.md)
-      - [部署Vue项目](/insane/2019/部署Vue项目.md)
+      - [部署Vue项目](/insane/2019/部署Vue项目.md) 
+  - [国庆宅记](/insane/2019/国庆宅记.md)
+  - [年末小结](/insane/2019/年末小结.md)
+
 
   - *2021 -*
     - [`RocketMQ`](/insane/2021/RocketMQ.md)
