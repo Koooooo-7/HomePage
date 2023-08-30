@@ -27,6 +27,7 @@
 ##### [转发github webhook到本机smee](https://smee.io/)
 ##### [智能去除图片背景](https://www.remove.bg/zh/)
 ##### [Java Thread Dump Analyzer](https://fastthread.io/ft-index.jsp)
+##### [Hand Writing Anime Creator](https://readme-typing-svg.demolab.com/demo/)
 
 ## 好记星
 
