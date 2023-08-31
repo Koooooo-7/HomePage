@@ -21,9 +21,15 @@
       
       - [RocketMQ源码学习-namesrv](/insane/2021/RocketMQ源码学习-namesrv.md)
       
+  - *2022 -*
+    - [`R.I.P 消失的一年-Covid`](/)
+
+  - *2023 -*
+    - [`MIT6.824-DistributedSystem`](/insane/2023/MIT6.824.md)
+      
 - **Kubernetes**
-  - [`Minikube实战`](/insane/k8s/Minikube实战.md)
-  - [`插件-oidc-kubelogin`](/insane/k8s/Kubelogin-oidc.md)
+  - [`Minikube`](/insane/k8s/Minikube实战.md)
+  - [`Auth插件-oidc-kubelogin`](/insane/k8s/Kubelogin-oidc.md)
 
 - **算法小渣**
   
