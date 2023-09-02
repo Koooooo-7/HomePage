@@ -164,6 +164,58 @@ public interface PutIfExistFunction<R, K, V1, V2> {
 }
 ```
 
+## 函数式Builder
+> 我们可以通过函数式来玩一点花的构建模式，本质上其实是`Function<String, Function<Long, Function<..., Target>>>`,
+> 通过函数式区分定义，让其更可读了。
+```java
+public class Coffee {
+    private final Long sugarWeight;
+    private final String milkBrand;
+
+    public Coffee(Long sugarWeight, String milkBrand) {
+        this.sugarWeight = sugarWeight;
+        this.milkBrand = milkBrand;
+    }
+
+    public Coffee build() {
+        // do some check
+        return this;
+    }
+
+}
+
+public class CoffeeBuilder {
+
+    @FunctionalInterface
+    public interface AddSugar {
+
+        AddMilk sugar(Long g);
+
+
+    }
+
+    @FunctionalInterface
+    public interface AddMilk {
+        Coffee milk(String brand);
+    }
+
+    public static AddSugar builder() {
+        return sugar -> mile -> new Coffee(sugar, mile);
+    }
+
+}
+
+// 使用
+public class Demo {
+    public static void main(String[] args) {
+        final Coffee coffee = CoffeeBuilder.builder()
+                .sugar(10L)
+                .milk("SanM")
+                .build();
+    }
+}
+```
+
 ---
 
 ## 参考
@@ -171,6 +223,8 @@ public interface PutIfExistFunction<R, K, V1, V2> {
 [HowToDoInJava-Functional Interfaces](https://howtodoinjava.com/java8/functional-interface-tutorial/)
 
 [HowToDoInJava-Predicate Filter](https://howtodoinjava.com/java8/how-to-use-predicate-in-java-8/)
+
+[Next level Java 8 staged builders](https://medium.com/linagora-engineering/next-level-java-8-staged-builders-602530f68b75)
 
 
 
