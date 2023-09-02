@@ -1,4 +1,4 @@
-* :sunflower:[There is a Bug](/)
+* :sunflower:[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&size=15&duration=3000&pause=1000&color=42B983&center=true&vCenter=true&width=100&height=25&lines=Navigator)](/)
   * [:pushpin: 搭建配置](/build/index.md)
   * [机器碎片 :wrench:](/patch/index.md)
   * [代码代码 :computer:](/code/index.md)

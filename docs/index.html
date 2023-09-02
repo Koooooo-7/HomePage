@@ -84,6 +84,8 @@
       function (hook) {
 
         hook.doneEach(function () {
+          // remove
+          return
           const id = "__mount_nav"
 
           const nav = document.querySelector("nav").cloneNode(true)
