@@ -28,6 +28,7 @@
 ##### [智能去除图片背景](https://www.remove.bg/zh/)
 ##### [Java Thread Dump Analyzer](https://fastthread.io/ft-index.jsp)
 ##### [Hand Writing Anime Creator](https://readme-typing-svg.demolab.com/demo/)
+##### [Mac下可以替代Charles的嗅探工具proxyman](https://proxyman.io/)
 
 ## 好记星
 
