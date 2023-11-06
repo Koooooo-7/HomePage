@@ -19,3 +19,5 @@ server:
 private String[] mimeTypes = new String[] { "text/html", "text/xml", "text/plain", "text/css", "text/javascript",
 			"application/javascript", "application/json", "application/xml" };
 ```
+
+# Spring 特殊Bean增强 IntroductionAdvisor
