@@ -73,3 +73,5 @@ public class ConfigurationMetadataAnnotationProcessor extends AbstractProcessor 
 
 ```
 
+## 参考
+[Annotation Processing 101](https://hannesdorfmann.com/annotation-processing/annotationprocessing101/)
