@@ -32,7 +32,7 @@
 
 ##### [Happens-before](https://x.ko8e24.top/#/patch/docs/Happens-before.md)
 
-##### [@FunctionalInterface](ttps://x.ko8e24.top/#/patch/docs/@FunctionalInterface.md)
+##### [@FunctionalInterface](https://x.ko8e24.top/#/patch/docs/@FunctionalInterface.md)
 ---
 
 
