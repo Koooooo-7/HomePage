@@ -286,3 +286,7 @@ Reopen the PR.
 ```
 
 Refer [How to reopen a pull-request after a force-push? gist](https://gist.github.com/robertpainsi/2c42c15f1ce6dab03a0675348edd4e2c)
+
+
+## Git 工作原理
+[Git from the inside out](https://maryrosecook.com/blog/post/git-from-the-inside-out)
