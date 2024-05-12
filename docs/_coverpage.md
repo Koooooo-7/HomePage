@@ -1,12 +1,12 @@
 ![logo](_media/icon.svg)
 
-# HomePage <small>2023</small>
+# HomePage <small>2024</small>
 
 > Today is a new day.:rainbow:
 
 
 
-[ Know more -> ](https://github.com/Koooooo-7)
+<!-- [ Know more -> ](https://github.com/Koooooo-7) -->
 [ :octocat: GitHub](https://github.com/Koooooo-7)
 
 <!--
