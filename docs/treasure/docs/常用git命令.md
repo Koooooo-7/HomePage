@@ -290,3 +290,24 @@ Refer [How to reopen a pull-request after a force-push? gist](https://gist.githu
 
 ## Git 工作原理
 [Git from the inside out](https://maryrosecook.com/blog/post/git-from-the-inside-out)
+
+## Changelog 获取commits
+可以使用以下命令来获取在某个commit之后的所有commit信息的精简内容，排除包含"chore"或"ci"的commit信息：
+
+```bash
+git log --oneline --no-merges <commit_sha>..HEAD --invert-grep --grep="chore\|ci"
+```
+
+- `git log`: 显示提交日志
+- `--oneline`: 以一行的形式显示每个提交的精简信息
+- `--no-merges`: 排除合并提交
+- `<commit_sha>..HEAD`: 从指定的commit之后到当前HEAD的所有提交
+- `--invert-grep`: 反转匹配，排除包含指定关键词的提交
+- `--grep="chore\|ci"`: 包含"chore"或"ci"的提交信息
+
+将`<commit_sha>`替换为你想要的commit的SHA值或者tag值。
+
+```shell
+git log --oneline --no-merges v2.3.3..HEAD --invert-grep --grep="chore\|ci"
+git log --oneline --no-merges faa30f03..HEAD --grep="chore\|ci"
+```
