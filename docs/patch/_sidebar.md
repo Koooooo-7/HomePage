@@ -74,6 +74,8 @@
   - [SpringBoot 配置小记](/patch/docs/SpringBoot.md)
 
   - [发布包到MavenCentral仓库](/patch/docs/发布包到MavenCentral仓库.md)
+
+  - [CPU Cache与CacheLine](/patch/docs/CPU-Cache与CacheLine.md)
 - [About Me](README.md)
 
 
