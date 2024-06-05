@@ -209,3 +209,4 @@ PS:
 [Magic cache line padding](https://trishagee.com/2011/07/22/dissecting_the_disruptor_why_its_so_fast_part_two__magic_cache_line_padding/)
 
 [高性能队列——Disruptor](https://tech.meituan.com/2016/11/18/disruptor.html)
+[The LMAX Architecture - Martin Fowler](https://martinfowler.com/articles/lmax.html)
