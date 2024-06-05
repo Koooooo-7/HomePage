@@ -153,7 +153,44 @@ kafka单从基本使用上来说，结合业务场景应该都能搞定:dog:。
 
     `Kafka`提供了`producer.type`来控制是不是主动flush（同步），还是写入`mmap`后立刻返回（异步）。
 
-    
+> Java 使用 MMAP
+```java
+import java.io.RandomAccessFile;
+import java.nio.MappedByteBuffer;
+import java.nio.channels.FileChannel;
+import java.nio.charset.StandardCharsets;
+
+public class MMPCase {
+
+    public static void main(String[] args) throws Exception {
+        String path = "example.txt";
+        RandomAccessFile file = new RandomAccessFile(path, "rw");
+        FileChannel channel = file.getChannel();
+        System.out.println(channel.size());
+
+        // 其实位置
+        int position = 0;
+        // size, 结束位置，即映射区是1kb
+        int size = 1024;
+        // 映射区间
+        MappedByteBuffer buffer = channel.map(FileChannel.MapMode.READ_WRITE, position, size);
+        String content = "Hello mmap";
+        byte[] buf = content.getBytes(StandardCharsets.UTF_8);
+        System.out.println(buf.length);
+        // 写入数据到内存映射文件
+        for (int i = 0; i < 500; i++) {
+            buffer.put(buf);
+            position += 10;
+            buffer.position(position);
+        }
+        // 强制刷入而不是依赖于操作系统
+//        buffer.force();
+        channel.close();
+        file.close();
+    }
+}
+
+  ``` 
 
 - 读取数据，`零拷贝`
 
