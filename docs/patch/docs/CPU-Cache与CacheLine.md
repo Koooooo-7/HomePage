@@ -210,3 +210,4 @@ PS:
 
 [高性能队列——Disruptor](https://tech.meituan.com/2016/11/18/disruptor.html)
 [The LMAX Architecture - Martin Fowler](https://martinfowler.com/articles/lmax.html)
+[LMAX presentation](https://www.infoq.com/presentations/LMAX/)
