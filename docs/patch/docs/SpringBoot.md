@@ -102,7 +102,7 @@ public class MyInterfaceInterceptor extends DelegatingIntroductionInterceptor im
     }
 }
 ```
-然后就完成了。
+然后就可以这样测试了。
 ```java
 @Component
 public class FinishTest implements ApplicationListener<ApplicationStartedEvent> {
@@ -118,4 +118,114 @@ public class FinishTest implements ApplicationListener<ApplicationStartedEvent> 
     }
 }
 
+```
+---
+查看生成的字节码。
+在VM参数添加`-Dcglib.debugLocation=./`输出到当前目录，系统参数在IDEA不生效。:dog:
+```java
+public class MyBook$$SpringCGLIB$$0 extends MyBook implements MyInterface, SpringProxy, Advised, Factory {
+    // 省略其他生成部分... 
+    private static final Method CGLIB$say$5$Method;
+    private static final MethodProxy CGLIB$say$5$Proxy;
+
+    static void CGLIB$STATICHOOK5() {
+        CGLIB$THREAD_CALLBACKS = new ThreadLocal();
+        CGLIB$emptyArgs = new Object[0];
+        Class var0 = Class.forName("com.example.webflux.intro.MyBook$$SpringCGLIB$$0");
+        Class var1;
+        // 被代理的接口的原始方法
+        CGLIB$say$5$Method = ReflectUtils.findMethods(new String[]{"say", "()V"}, (var1 = Class.forName("com.example.webflux.intro.MyInterface")).getDeclaredMethods())[0];
+        // 被代理的接口的代理方法
+        CGLIB$say$5$Proxy = MethodProxy.create(var1, var0, "()V", "say", "CGLIB$say$5");
+        // ... toString equals..
+    }
+
+     // 原始方法
+     final void CGLIB$say$5() {
+        super.say();
+    }
+
+    // 子类复写的方法，保证了先去调用MethodInterceptor代理
+    public final void say() {
+        MethodInterceptor var10000 = this.CGLIB$CALLBACK_0;
+        if (var10000 == null) {
+            CGLIB$BIND_CALLBACKS(this);
+            var10000 = this.CGLIB$CALLBACK_0;
+        }
+
+        if (var10000 != null) {
+            var10000.intercept(this, CGLIB$say$5$Method, CGLIB$emptyArgs, CGLIB$say$5$Proxy);
+        } else {
+            super.say();
+        }
+    }
+
+
+```
+
+最后会走到`MethodInterceptor`中，而这个就是spring生成的代理类的interceptor所在地。
+可以发现它实现了cglib所需要的`Callback`。
+```java
+package org.springframework.cglib.proxy;
+
+public interface MethodInterceptor
+extends Callback
+{
+    /**
+     * All generated proxied methods call this method instead of the original method.
+     * The original method may either be invoked by normal reflection using the Method object,
+     * or by using the MethodProxy (faster).
+     * @param obj "this", the enhanced object
+     * @param method intercepted Method
+     * @param args argument array; primitive types are wrapped
+     * @param proxy used to invoke super (non-intercepted method); may be called
+     * as many times as needed
+     * @throws Throwable any exception may be thrown; if so, super method will not be invoked
+     * @return any value compatible with the signature of the proxied method. Method returning void will ignore this value.
+     * @see MethodProxy
+     */
+    public Object intercept(Object obj, java.lang.reflect.Method method, Object[] args,
+                               MethodProxy proxy) throws Throwable;
+
+}
+```
+
+对于类，cglib可以这样代理，对于接口也可以，同JDK代理一样。
+对于一个接口，还是实现一个代理类并且注册相应的代理Callback。
+> JDK > 8 需要设置额外反射参数
+```
+--add-opens java.base/java.lang=ALL-UNNAMED -Dcglib.debugLocation=./
+```
+
+
+```java
+public interface EmptyInterface {
+
+    String say();
+}
+
+public static void main(String[] args) {
+
+        Enhancer enhancer = new Enhancer();
+        enhancer.setSuperclass(Object.class);
+        enhancer.setInterfaces(new Class[]{EmptyInterface.class});
+        enhancer.setCallback((MethodInterceptor) (obj, method, args1, proxy) -> {
+            System.out.println("Call method is: " + method);
+            if (method.getName().equals("say")) {
+                return "proxySay";
+            }
+            return method.invoke(obj);
+        });
+
+        EmptyInterface proxy = (EmptyInterface) enhancer.create();
+        var result = proxy.say();
+        System.out.println(result);
+}
+
+```
+
+```java
+public class EmptyInterface$$EnhancerByCGLIB$$4ce371ed implements EmptyInterface, Factory {
+    // ,,,
+}
 ```
