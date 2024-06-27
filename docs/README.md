@@ -6,6 +6,8 @@
 # A stout guy. :dog:
 ```
 
+![lox](./_media/lox_mountain.png)
+
 ## Recommandation
 
 
