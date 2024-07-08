@@ -29,6 +29,7 @@
 ##### [Java Thread Dump Analyzer](https://fastthread.io/ft-index.jsp)
 ##### [Hand Writing Anime Creator](https://readme-typing-svg.demolab.com/demo/)
 ##### [Mac下可以替代Charles的嗅探工具proxyman](https://proxyman.io/)
+##### [把github上的asset转为jsDelivr CDN资源](https://www.jsdelivr.com/github)
 
 ## 好记星
 
