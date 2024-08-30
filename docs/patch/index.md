@@ -5,6 +5,7 @@
 :mag: **快速索引**
 ## 综合
 
+##### [Project Loom](/patch/docs/lom-proposal.md)
 ##### [Kafka学习小记](patch/docs/Kafka学习小记.md)
 ##### [Zookeeper学习小记](patch/docs/Zookeeper学习小记.md)
 ##### [Java类加载机制](/patch/docs/Java类加载机制.md)

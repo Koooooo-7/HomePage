@@ -130,13 +130,3 @@ Fibers 是我们想要实现的用户态的线程。这里要讨论对其的观�
 重新审视ThreadLocal：JDK中的许多ThreadLocal用法都根据线程使用模式的预期变化进行了修订；
 重新审视锁：当虚拟线程在执行synchronized块时，无法从载体线程中卸载，这会影响系统吞吐量的可伸缩性，如果要避免这种情况，请使用ReentrantLock代替synchronized。有一些跟踪排查方法可以使用，具体阅读：[JEP 425](https://openjdk.org/jeps/425): Virtual Threads (Preview)#Executing virtual threads；
 改进的线程转储：通过使用jcmd，提供了更好的线程转储，可以过滤掉虚拟线程、将相关的虚拟线程组合在一起，或者以机器可读的方式生成转储，这些转储可以进行后处理以获得更好的可观察性。
-
-
-
-
-
-
-
-
-
-
