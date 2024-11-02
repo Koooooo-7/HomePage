@@ -7,6 +7,41 @@ kafka单从基本使用上来说，结合业务场景应该都能搞定:dog:。
 学习kafka的基本知识，发现还是消费者这一块有点绕，总结一下。
 
 
+## Kafka的性能优化 （update）
+> 回头看写的东西，确实深度有限...
+
+### 技术上
+这个更侧重于Kafka本身的调优，尤其是在Cloud上。
+- 首先要确定的是，Kafka在网络socket相关层面都默认会采用系统的配置，所以部署相应服务时候，需要清楚自己的容器内的系统配置size，避免用了某个特别的基础镜像
+  出现一些低吞吐的奇怪的问题。所以对于默认的socket缓冲区，链接等，也有可能存在优化空间。
+- 在Pod部署上，对于rebalance其实在敏捷开发下是一个经常性的问题，因为rollout发生的更加频繁。这时候使用静态成员策略`group.instance.id`或许是一种选择。但要
+  解决在多环境内，不同数量的Pod实例的问题。如果是在有HPA之类scale逻辑时候的处理可能问题更大。
+- 至于Kafka集群本身，目前云厂商会有专门的调优，倒是用担心，不然在`ISR`配比，controller的配置上，也要坑一波...。
+
+### 业务上
+
+
+集群服务端：
+控制数据刷盘的时间`log.flush.interval.ms`可以在某种极端情况下保证重要数据的安全性，如果不是硬盘损害的假设下。
+针对不同的业务类型，是否可以对日志进行压缩而不是清理，以及对应的频率设置。
+数据压缩，针对如果不是完全要求连续性数据，而是要求在时序性上最终状态可重放的话，可以开启压缩，来减少实际消费的offsets，
+通过控制压缩延迟时间`min.compaction.lag.ms`来控制压缩率。同时其他的清理日志的保留窗口时间也可以·根据业务相应调整。
+
+发送者端：
+Kafka 的设计上就是一个`poll模型`，在业务上通常我们一般想到的就是添加partition让其吞吐更大，落partition的key更均匀，而不是采用默认的`粘性分区策略`。
+但是根据业务来说，不一定所有的业务都适用的。
+可能你可以在业务上对某个/某些partition做处理，剩下的做均衡，保证了一个topic中不同kind的业务数据类型的分类。也许你可以说放在另一个topic里面做完全隔离，
+那也是一种解决办法。但是这并不能说Customize Partitioner就不是一种解决办法。尤其是通过解藕做异步notification时候，部分消息类型有优先级问题时。
+同时，发送的`batch.size`也可以根据业务进行调整，来取得更大的吞吐，如果是间歇性的高消息流, 则要搭配`linger.ms`避免在低消息时等待的延迟时间过长。
+
+同时在`max.request.partition.size`上可能需要进行配置（默认大小是1M），并且相应配置`max.request.partition.size`，尤其是某些数据集成时候有大对象时。但也许你应该优先开启`compression.type`压缩并设计对应的压缩级别`compression.压缩类型.level`（`compression.gzip.level`）。
+
+消费者端：
+如果吞吐有限，在拉取数据的的时候是可以做到调节到消费者和调用的业务接口I/O都到一个相对舒服的状态的，拉取的时候`max.poll.records`, 同时配合`fetch.max.bytes（默认50M）`和``。 通过。
+另外，虽然说Kafka本身都是使用二进制进行交换的，但是数据本身的序列化时间和序列化方式，也会影响很多性能。
+如果使用`json`做序列化，会换来可读性和可见性，但是占用的体积也更大。
+
+
 
 ## 为什么要用消息队列
 
@@ -31,6 +66,7 @@ kafka单从基本使用上来说，结合业务场景应该都能搞定:dog:。
 同时，消息来到的时候，在非指定情况下放到哪个partition中是变化的，但都是以队列的形式追加在后面。
 
 引入了*offset*的概念，老版本这个偏移量是丢zk里面，现在kafka自己干这个事情（`__consumer_offsets`）。
+同一个topic多个partition共享一个`__consumer_offsets`。
 
 
 ![官网图源](_media\20190513-01.png)
@@ -198,7 +234,6 @@ public class MMPCase {
 
   避免在内核空间和用户空间之间穿梭。
 
-  
 
   而在传统模式下，当需要对一个文件进行传输的时候，需要经过如下几个步骤：
 
@@ -229,6 +264,8 @@ public class MMPCase {
 -----
 
 ## 参考
+
+[Kafka-design](https://kafka.apache.org/documentation/#design)
 
 [为什么要用消息队列](https://github.com/doocs/advanced-java/blob/master/docs/high-concurrency/why-mq.md)
 
