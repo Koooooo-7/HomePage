@@ -288,4 +288,6 @@ public class MMPCase {
 
 [Kafka 事务设计文档 - 必看！](https://docs.google.com/document/d/11Jqy_GjUGtdXJK94XGsEIK7CP1SnQGdp2eF0wSw9ra8/edit?tab=t.0)
 
+[Kafka architecture - 必看！](https://developer.confluent.io/courses/architecture/get-started/)
+
 
