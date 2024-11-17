@@ -265,11 +265,35 @@ public class MMPCase {
 • Kafka 分区迁移时数据复制引发冷读： Kafka 在扩容时需要迁移分区数据，这时候也会引发冷读。
 
 
-  
+## Trancation
+Kafka在`v2`版本开始引入了`EOS`（`exact once sematic`），通过事务控制来实现。
+这里引入了一个`LSO`的概念，指的不是`last start offset`, 而是`last stable offset`。
+在所有事务都正常完成的情况下`LSO`是的`hw`高水位相等的，当没有完成的时候，`LSO<hw`。
+因为`LSO`指的是当前partition内开始的第一个未完成的事务tx0所在的位置，后续所有消息都`read_committed`的消费者都不可消费，都会被block在这里等待它tx0完成(commit/abort)才能继续。
+如果是`read_uncommitted`的消费者，会发现，压根没有事务这种东西。
+
+这其实就是在`enable.idempotence`的基础上，额外加上了`transaction.id`。根据实际测试，归纳特点是：
+- `transaction order`是在parttiion级别。
+  也就是说，比如分别有只有一个partition的topic1-p0和topic2-p0，然后producer1和producer2发送消息。
+  - 1.producer1发送给topic1-p0  
+  - 2.producer2发送给topic1-p0
+  - 3.producer2发送给topic2-p0
+  - 4.producer2提交事务
+  - 5.producer1发送给topic2-po
+  - 6.producer1提交事务
+
+加入有一个`read_committed`的消费者c1监听了这两个topic。
+那么我们会发现，首先消费者c1会消费到`producer2发送给topic2-p0`的消息，因为`producer2`已经提交了事务，此时`topic2-p0`的`LSO`可以往后移动了。
+`producer2发送给topic2-p0`的事务此时已经完成，对于`topic2-p0`来说，前面没有前置事务在这里block，所以可以直接给消费者消费`producer2发送给topic2-p0`的消息了。
+而`producer2发送给topic1-p0`的消息虽然已经提交，仍然无法消费到，因为前面还有`producer1发送给topic1-p0`的事务没有提交，`topic1-p0`的`LSO`还是被卡在`producer1`那里。
 
 -----
 
 ## 参考
+
+[Kafka 事务设计文档 - 必看！](https://docs.google.com/document/d/11Jqy_GjUGtdXJK94XGsEIK7CP1SnQGdp2eF0wSw9ra8/edit?tab=t.0)
+
+[Kafka architecture - 必看！](https://developer.confluent.io/courses/architecture/get-started/)
 
 [Kafka-design](https://kafka.apache.org/documentation/#design)
 
@@ -286,8 +310,5 @@ public class MMPCase {
 
 [AutoMQ 如何解决 Kafka 冷读副作用](https://blog.51cto.com/u_16366971/10072083)
 
-[Kafka 事务设计文档 - 必看！](https://docs.google.com/document/d/11Jqy_GjUGtdXJK94XGsEIK7CP1SnQGdp2eF0wSw9ra8/edit?tab=t.0)
-
-[Kafka architecture - 必看！](https://developer.confluent.io/courses/architecture/get-started/)
 
 
