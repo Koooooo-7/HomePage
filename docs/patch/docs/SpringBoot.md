@@ -1,3 +1,122 @@
+# SpringBoot构建优化
+参考文档
+- [Project leyden](https://spring.io/blog/2024/08/29/spring-boot-cds-support-and-project-leyden-anticipation)
+- [Springboot Dockerfiles](https://docs.spring.io/spring-boot/reference/packaging/container-images/dockerfiles.html)
+
+
+SpringBoot默认会构建成一个`uberjar(fatjar)`来可以直接执行。
+如果把这个jar直接打入镜像，不如使用分层构建来使应用的image减轻, 可以在本地测试。
+
+进行依赖导出。
+
+在target下执行
+```
+java -Djarmode=tools -jar app.jar extract --layers --destination extracted
+```
+会得到两个目录`application`和`dependencies`。
+```
+├── extracted
+│   ├── application
+│   │   └── app.jar
+│   ├── dependencies
+│   │   └── lib
+│   │       ├── HikariCP-5.1.0.jar
+│   │       ├── aalto-xml-1.3.3.jar
+│   │       ├── bcpkix-jdk18on-1.78.1.jar
+│   │       ├── bcprov-jdk18on-1.78.1.jar
+│   │       ├── bcutil-jdk18on-1.78.1.jar
+│   │       ├── cache-api-1.1.1.jar
+│   ├── snapshot-dependencies
+│   └── spring-boot-loader
+
+
+```
+
+- application
+  包含应用所在的classes的瘦身后的app.jar, 和之前的fatjar不同，尽管名字一样。
+- dependencies/lib
+  所有依赖的jar，和fatjar中的一样。
+
+使用分层构建可以将依赖和构建都留给上层镜像，而只留下必要的内容, 示例来自SpringBoot。
+```dockerfile
+# Perform the extraction in a separate builder container
+FROM bellsoft/liberica-openjre-debian:17-cds AS builder
+WORKDIR /builder
+# This points to the built jar file in the target folder
+# Adjust this to 'build/libs/*.jar' if you're using Gradle
+ARG JAR_FILE=target/*.jar
+# Copy the jar file to the working directory and rename it to application.jar
+COPY ${JAR_FILE} application.jar
+# Extract the jar file using an efficient layout
+RUN java -Djarmode=tools -jar application.jar extract --layers --destination extracted
+
+# This is the runtime container
+FROM bellsoft/liberica-openjre-debian:17-cds
+WORKDIR /application
+# Copy the extracted jar contents from the builder container into the working directory in the runtime container
+# Every copy step creates a new docker layer
+# This allows docker to only pull the changes it really needs
+COPY --from=builder /builder/extracted/dependencies/ ./
+COPY --from=builder /builder/extracted/spring-boot-loader/ ./
+COPY --from=builder /builder/extracted/snapshot-dependencies/ ./
+COPY --from=builder /builder/extracted/application/ ./
+# Start the application jar - this is not the uber jar used by the builder
+# This jar only contains application code and references to the extracted jar files
+# This layout is efficient to start up and CDS friendly
+ENTRYPOINT ["java", "-jar", "application.jar"]
+```
+
+这就完了吗，不，还有后续，即`CDS` （Class Data Sharing）。 
+SpringBoot在3.3.4版本后支持[CDS](https://docs.spring.io/spring-boot/reference/packaging/class-data-sharing.html), 即给应用做一次warmup之后，记录下所需要的load的
+一些class, JVM dump下来成为`jsa`文件后就成为一个shared archive做memory map。
+```
+When the JVM starts, the shared archive is memory-mapped to allow sharing of read-only JVM metadata for these classes among multiple JVM processes. Because accessing the shared archive is faster than loading the classes, startup time is reduced.
+```
+这个很简单，直接在生成的extracted目录下即可运行下面的命令来生成`jsa`文件。
+```
+java -XX:ArchiveClassesAtExit=application.jsa -Dspring.context.exit=onRefresh -jar app.jar
+```
+但是当你遇到`CDS没有enable`导致的没有`jsa`文件生成这个问题时，你需要先运行`java -Xshare:dump`。
+```
+-Xshare:on：启用共享类数据，JVM 会加载并使用已经存在的共享类数据文件。
+-Xshare:off：禁用共享类数据，不使用共享的类数据文件。
+-Xshare:auto：自动判断是否使用共享类数据文件。
+```
+然后再使用它,同时这里会生成`cds.log`文件来log类是从哪里加载的。
+```
+java -Xlog:class+load:file=cds.log  -XX:SharedArchiveFile=application.jsa -jar app.jar
+
+```
+打开log文件你会看到这样的内容。
+```cds.log
+[0.051s][info][class,load] java.lang.Object source: shared objects file
+[0.052s][info][class,load] java.io.Serializable source: shared objects file
+[0.052s][info][class,load] java.lang.Comparable source: shared objects file
+[0.052s][info][class,load] java.lang.CharSequence source: shared objects file
+[0.052s][info][class,load] java.lang.constant.Constable source: shared objects file
+[0.052s][info][class,load] java.lang.constant.ConstantDesc source: shared objects file
+[0.052s][info][class,load] java.lang.String source: shared objects file
+[0.052s][info][class,load] java.lang.reflect.AnnotatedElement source: shared objects file
+[0.052s][info][class,load] java.lang.reflect.GenericDeclaration source: shared objects file
+[0.052s][info][class,load] java.lang.reflect.Type source: shared objects file
+[0.052s][info][class,load] java.lang.invoke.TypeDescriptor source: shared objects file
+[0.052s][info][class,load] java.lang.invoke.TypeDescriptor$OfField source: shared objects file
+[0.052s][info][class,load] java.lang.Class source: shared objects file
+[0.052s][info][class,load] java.lang.Cloneable source: shared objects file
+[0.052s][info][class,load] java.lang.ClassLoader source: shared objects file
+[0.052s][info][class,load] java.lang.System source: shared objects file
+[0.052s][info][class,load] java.lang.Throwable source: shared objects file
+...
+```
+
+只需要在上面的镜像加上生成`jsa`文件的操作即可。
+
+相比于native build，这个算是一个折中的方案，不会有太多的refactor的effort也不会有过长的构建时间。
+但是获得的效果也没有native好，大概是可以提升2~3倍左右，作为一个过渡，还是很可以的。
+后面可能更需要关注的，可能就是SpringBoot带来的优化的SpringIoT了。
+
+
+---
 # 开启Gzip压缩
 当response的payload过大的时候，一个最方便的办法就是开启Gzip压缩，即
 ```
