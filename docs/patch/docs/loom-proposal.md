@@ -85,6 +85,10 @@ Fibers 是我们想要实现的用户态的线程。这里要讨论对其的观�
 如果要完全利用Fibers的特性在多线程竞争环境下不阻塞内核线程的话，应该优先使用`j.u.c `包（对Fiber友好）。同时，阻塞底层线程的时候，也可以触发`JFR/MBeans`的监控
 事件。
 
+!> UPDATE
+在JDK24开始[JEPS/491](https://openjdk.org/jeps/491) 进行了对`synchronized`重构，修改了JVM了对`monitor`原语平台线程的绑定，改为对虚拟线程在`monitor`处
+进行排队，并且支持unmount操作。
+
 此外Fibers也可以对现在已经存在的异步操作进行同步封装，即使用`park/unpark`阻塞当前的Fiber直到异步回调结束，这样可以很轻松的用Fibers来适配当前的异步代码。
 
 ## Continuations的设想
